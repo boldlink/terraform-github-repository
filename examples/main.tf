@@ -39,9 +39,8 @@ resource "random_string" "repository" {
 # ###############################################################################
 
 module "random_repository" {
-  source = "./../"
-  name   = "new-repo"
-  #name               = random_string.repository.id
+  source             = "./../"
+  name               = "new-repo"
   description        = "Terraform random repository example"
   archive_on_destroy = false
   license_template   = "apache-2.0"
@@ -70,4 +69,10 @@ module "random_repository" {
     ]
     apps = []
   }
+}
+
+output "outputs" {
+  value=[
+    module.random_repository,
+  ]
 }
