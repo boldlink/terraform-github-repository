@@ -1,0 +1,114 @@
+resource "github_repository" "main" {
+  name                   = var.name
+  description            = var.description
+  homepage_url           = var.homepage_url
+  visibility             = var.visibility
+  has_issues             = var.has_issues
+  has_projects           = var.has_projects
+  has_wiki               = var.has_wiki
+  is_template            = var.is_template
+  allow_merge_commit     = var.allow_merge_commit
+  allow_rebase_merge     = var.allow_rebase_merge
+  allow_squash_merge     = var.allow_squash_merge
+  allow_auto_merge       = var.allow_auto_merge
+  delete_branch_on_merge = var.delete_branch_on_merge
+  has_downloads          = var.has_downloads
+  auto_init              = var.auto_init
+  gitignore_template     = var.gitignore_template
+  license_template       = var.license_template
+  archived               = var.archived
+  archive_on_destroy     = var.archive_on_destroy
+  dynamic "pages" {
+    for_each = var.pages != null ? [true] : []
+
+    content {
+      source {
+        branch = var.pages.branch
+        path   = try(var.pages.path, "/")
+      }
+      cname = try(var.pages.cname, null)
+    }
+  }
+  topics = var.topics
+  dynamic "template" {
+    for_each = local.template
+    content {
+      owner      = var.template_owner
+      repository = var.template_repository
+    }
+  }
+  vulnerability_alerts = var.vulnerability_alerts
+}
+
+resource "github_branch" "branch" {
+  count      = length(var.branch) == 0 ? 0 : length(var.branch)
+  repository = github_repository.main.name
+  branch     = element(var.branch, count.index)
+  depends_on = [
+    github_repository.main
+  ]
+}
+
+resource "github_branch" "default" {
+  count      = var.default_branch == "main" ? 0 : 1
+  repository = github_repository.main.name
+  branch     = var.default_branch
+  depends_on = [
+    github_repository.main
+  ]
+}
+
+resource "github_branch_default" "default" {
+  count      = var.default_branch == "main" ? 0 : 1
+  repository = github_repository.main.name
+  branch     = var.default_branch
+  depends_on = [
+    github_branch.default
+  ]
+}
+
+resource "github_team_repository" "main" {
+  for_each   = var.teams
+  repository = github_repository.main.name
+  team_id    = each.value
+  permission = each.key
+}
+
+resource "github_branch_protection_v3" "main" {
+  count          = var.default_branch == "" ? 0 : 1
+  repository     = github_repository.main.name
+  branch         = var.default_branch
+  enforce_admins = var.enforce_admins
+
+  dynamic "required_status_checks" {
+    for_each = local.required_status_checks
+    content {
+      strict   = each.key
+      contexts = [each.value]
+    }
+  }
+
+  dynamic "required_pull_request_reviews" {
+    for_each = local.required_pull_request_reviews
+    content {
+      dismiss_stale_reviews           = required_pull_request_reviews.value.dismiss_stale_reviews
+      dismissal_users                 = required_pull_request_reviews.value.dismissal_users
+      dismissal_teams                 = [for k, v in var.teams : k]
+      require_code_owner_reviews      = required_pull_request_reviews.value.require_code_owner_reviews
+      required_approving_review_count = required_pull_request_reviews.value.required_approving_review_count
+    }
+  }
+
+  dynamic "restrictions" {
+    for_each = local.restrictions
+    content {
+      users = restrictions.value.users
+      teams = [for k, v in var.teams : k]
+      apps  = restrictions.value.apps
+    }
+  }
+  depends_on = [
+    github_branch_default.default,
+    github_branch.default
+  ]
+}
