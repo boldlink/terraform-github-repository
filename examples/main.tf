@@ -42,7 +42,6 @@ module "random_repository" {
   source             = "./../"
   name               = "new-repo"
   description        = "Terraform random repository example"
-  archive_on_destroy = false
   license_template   = "apache-2.0"
   allow_squash_merge = true
   branch             = ["dev", "pre", "prd"]
@@ -72,7 +71,7 @@ module "random_repository" {
 }
 
 output "outputs" {
-  value=[
+  value = [
     module.random_repository,
   ]
 }
