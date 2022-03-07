@@ -47,7 +47,7 @@ No requirements.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_random_repository"></a> [random\_repository](#module\_random\_repository) | ./../ | n/a |
+| <a name="module_random_repository"></a> [random\_repository](#module\_random\_repository) | boldlink/repository/github | 1.0.0 |
 
 ## Resources
 
