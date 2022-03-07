@@ -112,7 +112,7 @@ variable "topics" {
 }
 
 variable "archive_on_destroy" {
-  type        = string
+  type        = bool
   description = "(Optional) Set to `false` to not archive the repository instead of deleting on destroy."
 }
 
