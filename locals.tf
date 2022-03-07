@@ -1,0 +1,6 @@
+locals {
+  template                      = var.template == null ? [] : [var.template]
+  required_status_checks        = var.required_status_checks == null ? [] : [var.required_status_checks]
+  required_pull_request_reviews = var.required_pull_request_reviews == null ? [] : [var.required_pull_request_reviews]
+  restrictions                  = var.restrictions == null ? [] : [var.restrictions]
+}
