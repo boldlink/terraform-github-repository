@@ -39,7 +39,8 @@ resource "random_string" "repository" {
 # ###############################################################################
 
 module "random_repository" {
-  source             = "./../"
+  source             = "boldlink/repository/github"
+  version            = "1.0.0"
   name               = "new-repo"
   description        = "Terraform random repository example"
   license_template   = "apache-2.0"
