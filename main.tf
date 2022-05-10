@@ -96,6 +96,7 @@ resource "github_branch_protection_v3" "main" {
       dismissal_teams                 = [for k, v in var.teams : k]
       require_code_owner_reviews      = required_pull_request_reviews.value.require_code_owner_reviews
       required_approving_review_count = required_pull_request_reviews.value.required_approving_review_count
+      pull_request_bypassers          = required_pull_request_reviews.value.pull_request_bypassers
     }
   }
 
