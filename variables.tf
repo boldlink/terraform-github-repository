@@ -173,6 +173,7 @@ variable "required_pull_request_reviews" {
     dismissal_teams                 = list(string)
     require_code_owner_reviews      = bool
     required_approving_review_count = number
+    pull_request_bypassers          = list(string)
   })
   description = "supports the following arguments: `dismiss_stale_reviews` (Optional) Dismiss approved reviews automatically when a new commit is pushed. Defaults to `false` / `dismissal_users` (Optional) The list of user logins with dismissal access / `dismissal_teams` (Optional) The list of team slugs with dismissal access. Always use slug of the team, not its name. Each team already has to have access to the repository. /  / `require_code_owner_reviews` (Optional) Require an approved review in pull requests including files with a designated code owner. Defaults to `false` / `required_approving_review_count` (Optional) Require x number of approvals to satisfy branch protection requirements. If this is specified it must be a number between `1-6`"
   default     = null

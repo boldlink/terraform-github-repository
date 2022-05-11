@@ -8,15 +8,15 @@ terraform {
 }
 
 data "github_team" "admin" {
-  slug = "AdminTestTeam"
+  slug = "tfmadmin"
 }
 
 data "github_team" "maintain" {
-  slug = "MaintainTestTeam"
+  slug = "tfmmaintainers"
 }
 
 data "github_team" "contributer" {
-  slug = "ContributerTestTeam"
+  slug = "tfmwriters"
 }
 
 locals {
@@ -38,15 +38,14 @@ resource "random_string" "repository" {
 # To deploy this example export both the GITHUB_TOKEN and GITHUB_OWNER variables
 # ###############################################################################
 
-module "random_repository" {
-  source             = "boldlink/repository/github"
-  version            = "1.0.0"
-  name               = "new-repo"
+module "random_complete_rep" {
+  source             = "./../../"
+  name               = "new-repo-complete"
   description        = "Terraform random repository example"
   license_template   = "apache-2.0"
   allow_squash_merge = true
   branch             = ["dev", "pre", "prd"]
-  default_branch     = "develop"
+  default_branch     = "main"
   gitignore_template = "Terraform"
   visibility         = "public"
   homepage_url       = "https://boldlink.io"
@@ -60,6 +59,7 @@ module "random_repository" {
     required_approving_review_count = 1
     dismissal_teams                 = []
     dismissal_users                 = []
+    pull_request_bypassers          = [local.admin]
   }
   restrictions = {
     users = []
