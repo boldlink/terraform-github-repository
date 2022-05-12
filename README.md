@@ -1,6 +1,4 @@
 
-[![Build Status](https://github.com/boldlink/terraform-github-repository/actions/workflows/pre-commit.yml/badge.svg)](https://github.com/boldlink/terraform-github-repository/actions)
-
 # Terraform module for Github Repository
 
 This module is a Boldlink opinionated structure adapted to our internal requirements for creating organization repositories. 
