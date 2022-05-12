@@ -34,14 +34,13 @@ resource "random_string" "repository" {
 }
 
 # ###############################################################################
-# The examples below create an organization repository and team
+# The examples below create an organization repository and team repository
 # To deploy this example export both the GITHUB_TOKEN and GITHUB_OWNER variables
 # ###############################################################################
 
-module "random_repository" {
-  source             = "boldlink/repository/github"
-  version            = "1.0.0"
-  name               = "new-repo"
+module "branch_protection_v3" {
+  source             = "./../../"
+  name               = random_string.repository.result
   description        = "Terraform random repository example"
   license_template   = "apache-2.0"
   allow_squash_merge = true
@@ -50,11 +49,15 @@ module "random_repository" {
   gitignore_template = "Terraform"
   visibility         = "public"
   homepage_url       = "https://boldlink.io"
+  template = {
+    owner      = "boldlink"
+    repository = "terraform-module-template"
+  }
   teams = {
     admin    = local.admin
     maintain = local.maintain
   }
-  required_pull_request_reviews = {
+  required_pull_request_reviews_v3 = {
     dismiss_stale_reviews           = true
     require_code_owner_reviews      = true
     required_approving_review_count = 1
