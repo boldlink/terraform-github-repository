@@ -1,10 +1,18 @@
 
 terraform {
   required_providers {
+    random = {
+      source  = "hashicorp/random"
+      version = "3.1.3"
+    }
+
     github = {
-      source = "integrations/github"
+      source  = "integrations/github"
+      version = ">= 4.24.1"
     }
   }
+
+  required_version = ">= 0.13"
 }
 
 data "github_team" "admin" {
@@ -64,11 +72,5 @@ module "branch_protection" {
   }
   push_restrictions = [
     data.github_team.admin.node_id,
-  ]
-}
-
-output "outputs" {
-  value = [
-    module.branch_protection,
   ]
 }

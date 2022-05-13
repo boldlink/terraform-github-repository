@@ -1,10 +1,18 @@
 
 terraform {
   required_providers {
+    random = {
+      source  = "hashicorp/random"
+      version = "3.1.3"
+    }
+
     github = {
-      source = "integrations/github"
+      source  = "integrations/github"
+      version = ">= 4.24.1"
     }
   }
+
+  required_version = ">= 0.13"
 }
 
 data "github_team" "admin" {
@@ -15,14 +23,9 @@ data "github_team" "maintain" {
   slug = "MaintainTestTeam"
 }
 
-data "github_team" "contributer" {
-  slug = "ContributerTestTeam"
-}
-
 locals {
-  admin      = data.github_team.admin.id
-  maintain   = data.github_team.maintain.id
-  conributer = data.github_team.contributer.id
+  admin    = data.github_team.admin.id
+  maintain = data.github_team.maintain.id
 }
 
 
@@ -72,10 +75,4 @@ module "branch_protection_v3" {
     ]
     apps = []
   }
-}
-
-output "outputs" {
-  value = [
-    module.branch_protection_v3,
-  ]
 }

@@ -9,7 +9,11 @@
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
-No requirements.
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13 |
+| <a name="requirement_github"></a> [github](#requirement\_github) | >= 4.24.1 |
+| <a name="requirement_random"></a> [random](#requirement\_random) | 3.1.3 |
 
 ## Providers
 
@@ -28,7 +32,7 @@ No requirements.
 
 | Name | Type |
 |------|------|
-| [random_string.repository](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string) | resource |
+| [random_string.repository](https://registry.terraform.io/providers/hashicorp/random/3.1.3/docs/resources/string) | resource |
 | [github_team.admin](https://registry.terraform.io/providers/integrations/github/latest/docs/data-sources/team) | data source |
 | [github_team.maintain](https://registry.terraform.io/providers/integrations/github/latest/docs/data-sources/team) | data source |
 
@@ -40,7 +44,7 @@ No inputs.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_outputs"></a> [outputs](#output\_outputs) | n/a |
+| <a name="output_outputs"></a> [outputs](#output\_outputs) | Sample output for an example using branch protection |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 #### BOLDLink-SIG 2022

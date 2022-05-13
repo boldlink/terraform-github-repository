@@ -39,6 +39,7 @@ module "minimum" {
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13 |
+| <a name="requirement_github"></a> [github](#requirement\_github) | >= 4.24.1 |
 
 ## Providers
 
@@ -54,13 +55,13 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [github_branch.branch](https://registry.terraform.io/providers/hashicorp/github/latest/docs/resources/branch) | resource |
-| [github_branch.default](https://registry.terraform.io/providers/hashicorp/github/latest/docs/resources/branch) | resource |
-| [github_branch_default.default](https://registry.terraform.io/providers/hashicorp/github/latest/docs/resources/branch_default) | resource |
-| [github_branch_protection.main](https://registry.terraform.io/providers/hashicorp/github/latest/docs/resources/branch_protection) | resource |
-| [github_branch_protection_v3.main](https://registry.terraform.io/providers/hashicorp/github/latest/docs/resources/branch_protection_v3) | resource |
-| [github_repository.main](https://registry.terraform.io/providers/hashicorp/github/latest/docs/resources/repository) | resource |
-| [github_team_repository.main](https://registry.terraform.io/providers/hashicorp/github/latest/docs/resources/team_repository) | resource |
+| [github_branch.branch](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch) | resource |
+| [github_branch.default](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch) | resource |
+| [github_branch_default.default](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch_default) | resource |
+| [github_branch_protection.main](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch_protection) | resource |
+| [github_branch_protection_v3.main](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch_protection_v3) | resource |
+| [github_repository.main](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository) | resource |
+| [github_team_repository.main](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/team_repository) | resource |
 
 ## Inputs
 
