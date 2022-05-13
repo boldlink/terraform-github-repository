@@ -13,14 +13,12 @@
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13 |
 | <a name="requirement_github"></a> [github](#requirement\_github) | >= 4.24.1 |
-| <a name="requirement_random"></a> [random](#requirement\_random) | 3.1.3 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
 | <a name="provider_github"></a> [github](#provider\_github) | 4.24.1 |
-| <a name="provider_random"></a> [random](#provider\_random) | 3.1.3 |
 
 ## Modules
 
@@ -32,7 +30,6 @@
 
 | Name | Type |
 |------|------|
-| [random_string.repository](https://registry.terraform.io/providers/hashicorp/random/3.1.3/docs/resources/string) | resource |
 | [github_team.admin](https://registry.terraform.io/providers/integrations/github/latest/docs/data-sources/team) | data source |
 | [github_team.maintain](https://registry.terraform.io/providers/integrations/github/latest/docs/data-sources/team) | data source |
 

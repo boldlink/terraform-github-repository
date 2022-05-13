@@ -1,11 +1,6 @@
 
 terraform {
   required_providers {
-    random = {
-      source  = "hashicorp/random"
-      version = "3.1.3"
-    }
-
     github = {
       source  = "integrations/github"
       version = ">= 4.24.1"
@@ -28,14 +23,6 @@ locals {
   maintain = data.github_team.maintain.id
 }
 
-
-resource "random_string" "repository" {
-  length  = 5
-  special = false
-  upper   = false
-  number  = false
-}
-
 # ###############################################################################
 # The examples below create an organization repository and team repository
 # To deploy this example export both the GITHUB_TOKEN and GITHUB_OWNER variables
@@ -43,8 +30,8 @@ resource "random_string" "repository" {
 
 module "branch_protection" {
   source                   = "./../../"
-  name                     = random_string.repository.result
-  description              = "Terraform random repository example"
+  name                     = "sample-terraform-repository"
+  description              = "A Terraform repository example"
   license_template         = "apache-2.0"
   allow_squash_merge       = true
   branch                   = ["dev", "pre", "prd"]

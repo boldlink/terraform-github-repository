@@ -13,7 +13,6 @@
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13 |
 | <a name="requirement_github"></a> [github](#requirement\_github) | >= 4.24.1 |
-| <a name="requirement_random"></a> [random](#requirement\_random) | 3.1.3 |
 
 ## Providers
 
