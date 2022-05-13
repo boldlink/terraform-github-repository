@@ -76,6 +76,6 @@ module "branch_protection_v3" {
 
 output "outputs" {
   value = [
-    module.random_repository,
+    module.branch_protection_v3,
   ]
 }

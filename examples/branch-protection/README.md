@@ -30,7 +30,6 @@ No requirements.
 |------|------|
 | [random_string.repository](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string) | resource |
 | [github_team.admin](https://registry.terraform.io/providers/integrations/github/latest/docs/data-sources/team) | data source |
-| [github_team.contributer](https://registry.terraform.io/providers/integrations/github/latest/docs/data-sources/team) | data source |
 | [github_team.maintain](https://registry.terraform.io/providers/integrations/github/latest/docs/data-sources/team) | data source |
 
 ## Inputs

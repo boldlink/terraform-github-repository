@@ -15,14 +15,9 @@ data "github_team" "maintain" {
   slug = "MaintainTestTeam"
 }
 
-data "github_team" "contributer" {
-  slug = "ContributerTestTeam"
-}
-
 locals {
-  admin      = data.github_team.admin.id
-  maintain   = data.github_team.maintain.id
-  conributer = data.github_team.contributer.id
+  admin    = data.github_team.admin.id
+  maintain = data.github_team.maintain.id
 }
 
 
@@ -74,6 +69,6 @@ module "branch_protection" {
 
 output "outputs" {
   value = [
-    module.random_repository,
+    module.branch_protection,
   ]
 }
