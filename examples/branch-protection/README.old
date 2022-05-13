@@ -1,4 +1,4 @@
-# branch-protection-v3
+# branch-protection
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
@@ -16,7 +16,7 @@ No requirements.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_branch_protection_v3"></a> [branch\_protection\_v3](#module\_branch\_protection\_v3) | ./../../ | n/a |
+| <a name="module_branch_protection"></a> [branch\_protection](#module\_branch\_protection) | ./../../ | n/a |
 
 ## Resources
 
