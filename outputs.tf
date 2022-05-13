@@ -27,4 +27,3 @@ output "git_clone_url" {
   value       = github_repository.main.git_clone_url
   description = "URL that can be provided to git clone to clone the repository anonymously via the git protocol."
 }
-
