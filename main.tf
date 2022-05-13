@@ -75,7 +75,7 @@ resource "github_team_repository" "main" {
 }
 
 resource "github_branch_protection_v3" "main" {
-  count          = var.use_branch_protection ? 0 : 1
+  count          = var.use_branch_protection_v3 && local.validate_protection_version ? 1 : 0
   repository     = github_repository.main.name
   branch         = var.default_branch
   enforce_admins = var.enforce_admins
@@ -114,7 +114,7 @@ resource "github_branch_protection_v3" "main" {
 }
 
 resource "github_branch_protection" "main" {
-  count                           = var.use_branch_protection_v3 ? 0 : 1
+  count                           = var.use_branch_protection && local.validate_protection_version ? 1 : 0
   repository_id                   = github_repository.main.name
   pattern                         = var.pattern
   enforce_admins                  = var.enforce_admins
