@@ -254,20 +254,10 @@ variable "use_branch_protection" {
   description = "Whether to use `github_branch_protection` and not `github_branch_protection_v3`"
   type        = bool
   default     = false
-  /*
-  validation {
-    condition = var.use_branch_protection_v3 ==  var.use_branch_protection
-    error_message = "Sorry, you can only use either `github_branch_protection` or `github_branch_protection_v3`."
-  }  */
 }
 
 variable "use_branch_protection_v3" {
   description = "Whether to use `github_branch_protection_v3` and not `github_branch_protection`"
   type        = bool
   default     = true
-  /*
-  validation {
-    condition = var.use_branch_protection_v3 ==  var.use_branch_protection
-    error_message = "Sorry, you can only use either `github_branch_protection` or `github_branch_protection_v3`."
-  }  */
 }
