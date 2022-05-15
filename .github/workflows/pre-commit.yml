@@ -9,7 +9,7 @@ jobs:
   pre-commit:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - run: |
         mkdir -p /home/runner/.local/bin
         curl -sSLo ./terraform-docs.tar.gz https://terraform-docs.io/dl/v0.16.0/terraform-docs-v0.16.0-$(uname)-amd64.tar.gz
@@ -31,7 +31,5 @@ jobs:
         terraform --version
     - uses: actions/setup-python@v2
     - run: pip install --upgrade pre-commit
-    - run: |
-        set -ex
-        pre-commit run --all-files
+    - run: pre-commit run --all-files
     # - run: git diff HEAD
