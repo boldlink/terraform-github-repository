@@ -18,7 +18,7 @@
 
 | Name | Version |
 |------|---------|
-| <a name="provider_github"></a> [github](#provider\_github) | >= 4.24.1 |
+| <a name="provider_github"></a> [github](#provider\_github) | 4.24.1 |
 
 ## Modules
 
