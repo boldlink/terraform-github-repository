@@ -1,19 +1,3 @@
-
-terraform {
-  required_providers {
-    github = {
-      source  = "integrations/github"
-      version = ">= 4.24.1"
-    }
-  }
-
-  required_version = ">= 0.13"
-}
-
-data "github_team" "admin" {
-  slug = "AdminTestTeam"
-}
-
 data "github_team" "maintain" {
   slug = "MaintainTestTeam"
 }
