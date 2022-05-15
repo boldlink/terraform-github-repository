@@ -17,7 +17,7 @@ jobs:
     steps:
     - name: Git checkout
       uses: actions/checkout@v3
-    
+
     - name: Install terraform binary
       run: |
         mkdir -p /home/runner/.local/bin
@@ -45,6 +45,6 @@ jobs:
 
     - name: Install pre-commit
       run: pip install --upgrade pre-commit
-      
+
     - name: Run pre-commit checks
       run: pre-commit run -a
