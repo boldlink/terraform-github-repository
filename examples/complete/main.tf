@@ -1,3 +1,7 @@
+data "github_team" "admin" {
+  slug = "AdminTestTeam"
+}
+
 data "github_team" "maintain" {
   slug = "MaintainTestTeam"
 }
