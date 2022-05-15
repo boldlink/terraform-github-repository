@@ -32,7 +32,6 @@ jobs:
     - uses: actions/setup-python@v2
     - run: pip install --upgrade pre-commit
     - run: |
-        if pre-commit run --all-files; then
-          echo $?
-        fi
-    - run: git diff HEAD
+        set -ex
+        pre-commit run --all-files
+    # - run: git diff HEAD
