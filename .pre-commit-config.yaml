@@ -34,7 +34,7 @@ repos:
     hooks:
       - id: terraform_fmt                                               ## Checks terraform format
       - id: terraform_validate                                          ## validates with tflint and initializes modules/files if they are not initialized
-      # - id: terraform_docs                                              ## Validate and build README's files
+      - id: terraform_docs                                              ## Validate and build README's files
       #   args:
       #     - --hook-config=--path-to-file=README.md                      ## default path is . This specifies the path to the file, including the file name
       #     - --hook-config=--recursive-path=./example
