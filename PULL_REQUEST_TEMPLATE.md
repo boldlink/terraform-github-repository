@@ -1,6 +1,6 @@
 # Description
 
-lorem ipsum lorem ipsum lorem 
+lorem ipsum lorem ipsum lorem
 
 ## Features/Fixes/Patches/Changes list:
 - ...
@@ -18,7 +18,7 @@ lorem ipsum lorem ipsum lorem
 * [ ] OWNER: Does your submission pass?
     * [ ] Pre-commit (attach logs/print screen to this PR)
     * [ ] Checkov/terrascan (attach logs/print screen to this PR)
-    * [ ] Terraform resources examples build/destroy successfully with Terraform 0.13.7 minimum?
+    * [ ] Terraform resources examples build/destroy successfully with Terraform 0.14.11 minimum?
 * [ ] Have you added an explanation of what your changes do and why you'd like us to include them?
 * [ ] Have you written new tests for your core changes, as applicable?
 * [ ] Have you successfully run tests with your changes locally?
