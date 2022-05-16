@@ -1,6 +1,6 @@
 module "minimum" {
   source      = "./../../"
-  name        = "sample-terraform-repository"
+  name        = "example-minimum"
   description = "Terraform sample github repository "
   visibility  = "public"
 }

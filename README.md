@@ -38,7 +38,7 @@ module "minimum" {
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.14.11 |
 | <a name="requirement_github"></a> [github](#requirement\_github) | >= 4.24.1 |
 
 ## Providers
@@ -77,6 +77,7 @@ No modules.
 | <a name="input_archived"></a> [archived](#input\_archived) | (Optional) Specifies if the repository should be archived. (Default: false) | `bool` | `false` | no |
 | <a name="input_auto_init"></a> [auto\_init](#input\_auto\_init) | (Optional) Whether or not to produce an initial commit in the repository. (Default: true) | `bool` | `true` | no |
 | <a name="input_branch"></a> [branch](#input\_branch) | (Required) The branch (e.g. stage) | `list(string)` | `[]` | no |
+| <a name="input_branch_protection_version"></a> [branch\_protection\_version](#input\_branch\_protection\_version) | Provide the branch protection options.Either `branch_protection_v3` or `branch_protection` Only one option can be `true`. | <pre>object({<br>    use_branch_protection    = bool<br>    use_branch_protection_v3 = bool<br>  })</pre> | <pre>{<br>  "use_branch_protection": false,<br>  "use_branch_protection_v3": true<br>}</pre> | no |
 | <a name="input_default_branch"></a> [default\_branch](#input\_default\_branch) | The default branch (e.g. develop) | `string` | `"main"` | no |
 | <a name="input_delete_branch_on_merge"></a> [delete\_branch\_on\_merge](#input\_delete\_branch\_on\_merge) | (Optional) Whether or not to delete the merged branch after merging a pull request. (Default: false) | `bool` | `true` | no |
 | <a name="input_description"></a> [description](#input\_description) | (Optional) A description of the repository. | `string` | `null` | no |
@@ -103,8 +104,6 @@ No modules.
 | <a name="input_teams"></a> [teams](#input\_teams) | The teams and respective permissions to the repository, for example `admin = maintainer` | `map(string)` | `{}` | no |
 | <a name="input_template"></a> [template](#input\_template) | Template repository to use, specify a `owner` and a `repository` id | <pre>object({<br>    owner      = string<br>    repository = string<br>  })</pre> | `null` | no |
 | <a name="input_topics"></a> [topics](#input\_topics) | (Optional) The list of topics of the repository.  (Default: []) | `list(string)` | `[]` | no |
-| <a name="input_use_branch_protection"></a> [use\_branch\_protection](#input\_use\_branch\_protection) | Whether to use `github_branch_protection` and not `github_branch_protection_v3` | `bool` | `false` | no |
-| <a name="input_use_branch_protection_v3"></a> [use\_branch\_protection\_v3](#input\_use\_branch\_protection\_v3) | Whether to use `github_branch_protection_v3` and not `github_branch_protection` | `bool` | `true` | no |
 | <a name="input_visibility"></a> [visibility](#input\_visibility) | (Optional) Can be 'public', 'private' or 'internal' .The visibility parameter overrides the private parameter. Defaults to 'private' if neither private nor visibility are set, default to state of private parameter if it is set. | `string` | `"private"` | no |
 | <a name="input_vulnerability_alerts"></a> [vulnerability\_alerts](#input\_vulnerability\_alerts) | (Optional) Set to `false` to disable security alerts for vulnerable dependencies. Enabling requires alerts to be enabled on the owner level. | `bool` | `null` | no |
 
@@ -125,7 +124,7 @@ This repository uses third party software:
 * [pre-commit](https://pre-commit.com/) - Used to help ensure code and documentation consistency
   * Install with `brew install pre-commit`
   * Manually use with `pre-commit run`
-* [terraform 0.14.7](https://releases.hashicorp.com/terraform/0.14.11/) For backwards compability we are using version 0.14.11 for testing making this the min version tested and without issues with terraform-docs.
+* [terraform 0.14.11](https://releases.hashicorp.com/terraform/0.14.11/) For backwards compatibility we are using version 0.14.11 for testing making this the min version tested and without issues with terraform-docs.
 * [terraform-docs](https://github.com/segmentio/terraform-docs) - Used to generate the [Inputs](#Inputs) and [Outputs](#Outputs) sections
   * Install with `brew install terraform-docs`
   * Manually use via pre-commit

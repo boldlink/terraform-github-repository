@@ -1,14 +1,20 @@
-data "github_team" "admin" {
-  slug = "AdminTestTeam"
+
+# Sample organization teams
+resource "github_team" "admin" {
+  name        = "admin-team"
+  description = "Sample admin team"
+  privacy     = "closed"
 }
 
-data "github_team" "maintain" {
-  slug = "MaintainTestTeam"
+resource "github_team" "maintain" {
+  name        = "maintain-team"
+  description = "Sample maintain team"
+  privacy     = "closed"
 }
 
 locals {
-  admin    = data.github_team.admin.id
-  maintain = data.github_team.maintain.id
+  admin    = github_team.admin.id
+  maintain = github_team.maintain.id
 }
 
 # ###############################################################################
@@ -16,9 +22,9 @@ locals {
 # To deploy this example export both the GITHUB_TOKEN and GITHUB_OWNER variables
 # ###############################################################################
 
-module "branch_protection_v3" {
+module "complete" {
   source             = "./../../"
-  name               = "sample-terraform-repository"
+  name               = "example-complete"
   description        = "A Terraform repository example."
   license_template   = "apache-2.0"
   allow_squash_merge = true
