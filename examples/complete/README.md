@@ -29,8 +29,8 @@
 
 | Name | Type |
 |------|------|
-| [github_team.admin](https://registry.terraform.io/providers/integrations/github/latest/docs/data-sources/team) | data source |
-| [github_team.maintain](https://registry.terraform.io/providers/integrations/github/latest/docs/data-sources/team) | data source |
+| [github_team.admin](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/team) | resource |
+| [github_team.maintain](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/team) | resource |
 
 ## Inputs
 

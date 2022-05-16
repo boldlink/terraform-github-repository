@@ -1,14 +1,21 @@
-data "github_team" "admin" {
-  slug = "AdminTestTeam"
+
+# Sample organization teams
+resource "github_team" "admin" {
+  name        = "admin-team"
+  description = "Sample admin team"
+  privacy     = "closed"
 }
 
-data "github_team" "maintain" {
-  slug = "MaintainTestTeam"
+resource "github_team" "maintain" {
+  name        = "maintain-team"
+  description = "Sample maintain team"
+  privacy     = "closed"
 }
 
 locals {
-  admin    = data.github_team.admin.id
-  maintain = data.github_team.maintain.id
+  admin     = github_team.admin.id
+  maintain  = github_team.maintain.id
+  bypassers = github_team.admin.node_id
 }
 
 # ###############################################################################
@@ -18,7 +25,7 @@ locals {
 
 module "branch_protection" {
   source             = "./../../"
-  name               = "sample-terraform-repository"
+  name               = "example-branch-protection"
   description        = "A Terraform repository example"
   license_template   = "apache-2.0"
   allow_squash_merge = true
@@ -44,10 +51,10 @@ module "branch_protection" {
     required_approving_review_count = 1
     dismissal_teams                 = []
     dismissal_restrictions          = []
-    pull_request_bypassers          = [data.github_team.admin.node_id]
+    pull_request_bypassers          = [local.bypassers]
     restrict_dismissals             = true
   }
   push_restrictions = [
-    data.github_team.admin.node_id,
+    github_team.admin.node_id,
   ]
 }
