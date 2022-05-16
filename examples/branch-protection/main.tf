@@ -17,17 +17,19 @@ locals {
 # ###############################################################################
 
 module "branch_protection" {
-  source                   = "./../../"
-  name                     = "sample-terraform-repository"
-  description              = "A Terraform repository example"
-  license_template         = "apache-2.0"
-  allow_squash_merge       = true
-  branch                   = ["dev", "pre", "prd"]
-  default_branch           = "develop"
-  visibility               = "public"
-  homepage_url             = "https://boldlink.io"
-  use_branch_protection    = true
-  use_branch_protection_v3 = false
+  source             = "./../../"
+  name               = "sample-terraform-repository"
+  description        = "A Terraform repository example"
+  license_template   = "apache-2.0"
+  allow_squash_merge = true
+  branch             = ["dev", "pre", "prd"]
+  default_branch     = "develop"
+  visibility         = "public"
+  homepage_url       = "https://boldlink.io"
+  branch_protection_version = {
+    use_branch_protection    = true
+    use_branch_protection_v3 = false
+  }
   template = {
     owner      = "boldlink"
     repository = "terraform-module-template"

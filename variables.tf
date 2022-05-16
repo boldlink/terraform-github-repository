@@ -250,14 +250,18 @@ variable "required_pull_request_reviews" {
   default = null
 }
 
-variable "use_branch_protection" {
-  description = "Whether to use `github_branch_protection` and not `github_branch_protection_v3`"
-  type        = bool
-  default     = false
-}
-
-variable "use_branch_protection_v3" {
-  description = "Whether to use `github_branch_protection_v3` and not `github_branch_protection`"
-  type        = bool
-  default     = true
+variable "branch_protection_version" {
+  description = "Provide the branch protection options.Either `branch_protection_v3` or `branch_protection` Only one option can be `true`."
+  type = object({
+    use_branch_protection    = bool
+    use_branch_protection_v3 = bool
+  })
+  default = {
+    use_branch_protection    = false
+    use_branch_protection_v3 = true
+  }
+  validation {
+    condition     = (var.branch_protection_version.use_branch_protection == true && var.branch_protection_version.use_branch_protection_v3 == false) || (var.branch_protection_version.use_branch_protection == false && var.branch_protection_version.use_branch_protection_v3 == true) || (var.branch_protection_version.use_branch_protection == false && var.branch_protection_version.use_branch_protection_v3 == false)
+    error_message = "Only set one of the following to true; either `branch_protection` or `branch_protection_v3`."
+  }
 }

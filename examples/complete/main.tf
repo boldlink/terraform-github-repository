@@ -16,7 +16,7 @@ locals {
 # To deploy this example export both the GITHUB_TOKEN and GITHUB_OWNER variables
 # ###############################################################################
 
-module "branch_protection_v3" {
+module "complete" {
   source             = "./../../"
   name               = "sample-terraform-repository"
   description        = "A Terraform repository example."

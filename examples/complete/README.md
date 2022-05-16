@@ -2,7 +2,7 @@
 
 [<img src="https://avatars.githubusercontent.com/u/25388280?s=200&v=4" width="96"/>](https://boldlink.io)
 
-# Module complete example (using branch protection v3)
+# Module complete example (using branch protection v3 as default)
 
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
@@ -23,7 +23,7 @@
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_branch_protection_v3"></a> [branch\_protection\_v3](#module\_branch\_protection\_v3) | ./../../ | n/a |
+| <a name="module_complete"></a> [complete](#module\_complete) | ./../../ | n/a |
 
 ## Resources
 
