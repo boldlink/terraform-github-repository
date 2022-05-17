@@ -39,7 +39,6 @@ module "branch_protection" {
   allow_squash_merge     = true
   branch                 = ["dev", "pre", "prd"]
   default_branch         = "develop"
-  visibility             = "private"
   require_signed_commits = true
   homepage_url           = "https://boldlink.io"
   branch_protection_version = {

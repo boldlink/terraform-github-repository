@@ -10,7 +10,7 @@ This module is a Boldlink opinionated structure adapted to our internal requirem
 
 This template creates your custom Github repository, team repositories allowing to configure access, branches and branches protection
 
-**NOTE** [github_branch_protection_v3.main](https://registry.terraform.io/providers/hashicorp/github/latest/docs/resources/branch_protection_v3) requires an upgrade to github pro or the repository to be made public.
+**NOTE** Both [github_branch_protection_v3.main](https://registry.terraform.io/providers/hashicorp/github/latest/docs/resources/branch_protection_v3) and  [github_branch_protection.main](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch_protection) require an upgrade to github pro or the repository to be made public.
 
 Examples available [`here`](https://github.com/boldlink/terraform-github-repository/tree/main/examples)
 
@@ -22,17 +22,6 @@ module "minimum" {
   source      = "./../../"
   name        = "example-minimum"
   description = "Terraform sample github repository "
-  visibility  = "private"
-
-  required_pull_request_reviews = {
-    dismiss_stale_reviews           = true
-    require_code_owner_reviews      = true
-    required_approving_review_count = 2
-    dismissal_teams                 = []
-    dismissal_restrictions          = []
-    pull_request_bypassers          = []
-    restrict_dismissals             = true
-  }
 }
 
 ```
