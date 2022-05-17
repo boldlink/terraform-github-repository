@@ -40,6 +40,7 @@ module "branch_protection" {
   branch             = ["dev", "pre", "prd"]
   default_branch     = "develop"
   visibility         = "private"
+  require_signed_commits = true
   homepage_url       = "https://boldlink.io"
   branch_protection_version = {
     use_branch_protection    = true

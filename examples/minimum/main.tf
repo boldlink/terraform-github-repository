@@ -3,6 +3,7 @@ module "minimum" {
   name        = "example-minimum"
   description = "Terraform sample github repository "
   visibility  = "private"
+  require_signed_commits = true
 
   required_pull_request_reviews = {
     dismiss_stale_reviews           = true

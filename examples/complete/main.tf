@@ -40,6 +40,7 @@ module "complete" {
   default_branch     = "develop"
   gitignore_template = "Terraform"
   visibility         = "private"
+  require_signed_commits = true
   homepage_url       = "https://boldlink.io"
   template = {
     owner      = "boldlink"

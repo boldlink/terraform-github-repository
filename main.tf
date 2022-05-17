@@ -75,10 +75,12 @@ resource "github_team_repository" "main" {
 }
 
 resource "github_branch_protection_v3" "main" {
-  count          = var.branch_protection_version.use_branch_protection_v3 ? 1 : 0
-  repository     = github_repository.main.name
-  branch         = var.default_branch
-  enforce_admins = var.enforce_admins
+  count                           = var.branch_protection_version.use_branch_protection_v3 ? 1 : 0
+  repository                      = github_repository.main.name
+  branch                          = var.default_branch
+  enforce_admins                  = var.enforce_admins
+  require_signed_commits          = var.require_signed_commits
+  require_conversation_resolution = var.require_conversation_resolution
 
   dynamic "required_status_checks" {
     for_each = local.required_status_checks
