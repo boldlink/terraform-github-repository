@@ -39,7 +39,7 @@ module "branch_protection" {
   allow_squash_merge = true
   branch             = ["dev", "pre", "prd"]
   default_branch     = "develop"
-  visibility         = "public"
+  visibility         = "private"
   homepage_url       = "https://boldlink.io"
   branch_protection_version = {
     use_branch_protection    = true
@@ -56,7 +56,7 @@ module "branch_protection" {
   required_pull_request_reviews = {
     dismiss_stale_reviews           = true
     require_code_owner_reviews      = true
-    required_approving_review_count = 1
+    required_approving_review_count = 2
     dismissal_teams                 = []
     dismissal_restrictions          = []
     pull_request_bypassers          = [local.bypassers]

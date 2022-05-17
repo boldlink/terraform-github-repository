@@ -39,7 +39,7 @@ module "complete" {
   branch             = ["dev", "pre", "prd"]
   default_branch     = "develop"
   gitignore_template = "Terraform"
-  visibility         = "public"
+  visibility         = "private"
   homepage_url       = "https://boldlink.io"
   template = {
     owner      = "boldlink"
@@ -52,7 +52,7 @@ module "complete" {
   required_pull_request_reviews_v3 = {
     dismiss_stale_reviews           = true
     require_code_owner_reviews      = true
-    required_approving_review_count = 1
+    required_approving_review_count = 2
     dismissal_teams                 = []
     dismissal_users                 = []
   }
