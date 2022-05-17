@@ -1,13 +1,21 @@
 
+resource "random_pet" "admin" {
+  length = 2
+}
+
+resource "random_pet" "maintain" {
+  length = 2
+}
+
 # Sample organization teams
 resource "github_team" "admin" {
-  name        = "admin-team"
+  name        = random_pet.admin.id
   description = "Sample admin team"
   privacy     = "closed"
 }
 
 resource "github_team" "maintain" {
-  name        = "maintain-team"
+  name        = random_pet.maintain.id
   description = "Sample maintain team"
   privacy     = "closed"
 }
