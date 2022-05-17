@@ -2,33 +2,34 @@ CURRENT_DIR = $(shell pwd)
 BASE_DIR := $(CURRENT_DIR)/examples/*
 SUBDIRS := $(shell find $(BASE_DIR) -maxdepth 1 -type d)
 
-.PHONY: all modtest_init modtest_plan modtest_aplly modtest_destroy clean_tests
+.PHONY: all
 
 
-modtest_init:
+tfinit:
 	for number in $(SUBDIRS) ; do \
 			cd $$number && terraform init ; \
 	done
 
-modtest_plan:
+tfplan:
 	for number in $(SUBDIRS) ; do \
 			cd $$number && terraform plan ; \
 	done
 
-modtest_aplly:
+tfaplly:
 	for number in $(SUBDIRS) ; do \
-			cd $$number && terraform apply --auto-approve ; \
+			cd $$number && terraform plan && terraform apply --auto-approve ; \
 	done
 
-mod_test: modtest_init modtest_aplly
-
-modtest_destroy:
+tfdestroy:
 	for number in $(SUBDIRS) ; do \
 			cd $$number && terraform destroy --auto-approve ; \
 	done
 
-clean_tests:
+tfclean:
 	for number in $(SUBDIRS) ; do \
-			cd $$number && rm -rf .terraform ; \
-			# cd $$number && rm -rf .terraform.lock.hcl ; \
+			rm -rf $$number/.terraform* ; \
 	done
+
+examplescreate: tfinit tfaplly
+
+examplesclean: tfdestroy tfclean
