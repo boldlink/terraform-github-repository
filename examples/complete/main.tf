@@ -31,17 +31,17 @@ locals {
 # ###############################################################################
 
 module "complete" {
-  source             = "./../../"
-  name               = "example-complete"
-  description        = "A Terraform repository example."
-  license_template   = "apache-2.0"
-  allow_squash_merge = true
-  branch             = ["dev", "pre", "prd"]
-  default_branch     = "develop"
-  gitignore_template = "Terraform"
-  visibility         = "private"
+  source                 = "./../../"
+  name                   = "example-complete"
+  description            = "A Terraform repository example."
+  license_template       = "apache-2.0"
+  allow_squash_merge     = true
+  branch                 = ["dev", "pre", "prd"]
+  default_branch         = "develop"
+  gitignore_template     = "Terraform"
+  visibility             = "private"
   require_signed_commits = true
-  homepage_url       = "https://boldlink.io"
+  homepage_url           = "https://boldlink.io"
   template = {
     owner      = "boldlink"
     repository = "terraform-module-template"

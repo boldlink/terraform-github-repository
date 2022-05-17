@@ -32,16 +32,16 @@ locals {
 # ###############################################################################
 
 module "branch_protection" {
-  source             = "./../../"
-  name               = "example-branch-protection"
-  description        = "A Terraform repository example"
-  license_template   = "apache-2.0"
-  allow_squash_merge = true
-  branch             = ["dev", "pre", "prd"]
-  default_branch     = "develop"
-  visibility         = "private"
+  source                 = "./../../"
+  name                   = "example-branch-protection"
+  description            = "A Terraform repository example"
+  license_template       = "apache-2.0"
+  allow_squash_merge     = true
+  branch                 = ["dev", "pre", "prd"]
+  default_branch         = "develop"
+  visibility             = "private"
   require_signed_commits = true
-  homepage_url       = "https://boldlink.io"
+  homepage_url           = "https://boldlink.io"
   branch_protection_version = {
     use_branch_protection    = true
     use_branch_protection_v3 = false
