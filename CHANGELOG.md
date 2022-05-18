@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Feature: Add Branch protction options to additional branches.
 - Fix: Remove the main branch if default branch changes.
 
-## [1.1.0] - 2022-05-17
+## [1.1.0] - 2022-05-18
 The following  additions, changes and fixes were made in this release.
 
 ### Added
