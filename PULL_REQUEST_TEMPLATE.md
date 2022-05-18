@@ -4,7 +4,7 @@ lorem ipsum lorem ipsum lorem
 
 ## Features/Fixes/Patches/Changes list:
 
-See the [CHANGELOG](./CHANGELOG.md) for a list of all updates in this PR.
+See the [CHANGELOG](./../tree/<BRANCH-NAME>/CHANGELOG.md) for a list of all updates in this PR.
 
 ## Checklists:
 <!-- You can erase any parts of this template not applicable to your Pull Request. -->
