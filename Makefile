@@ -6,28 +6,28 @@ SUBDIRS := $(shell find $(BASE_DIR) -maxdepth 1 -type d)
 
 
 tfinit:
-	for number in $(SUBDIRS) ; do \
-			cd $$number && terraform init ; \
+	for folder in $(SUBDIRS) ; do \
+			cd $$folder && terraform init ; \
 	done
 
 tfplan:
-	for number in $(SUBDIRS) ; do \
-			cd $$number && terraform plan ; \
+	for folder in $(SUBDIRS) ; do \
+			cd $$folder && terraform plan ; \
 	done
 
 tfaplly:
-	for number in $(SUBDIRS) ; do \
-			cd $$number && terraform plan && terraform apply --auto-approve ; \
+	for folder in $(SUBDIRS) ; do \
+			cd $$folder && terraform plan && terraform apply --auto-approve ; \
 	done
 
 tfdestroy:
-	for number in $(SUBDIRS) ; do \
-			cd $$number && terraform destroy --auto-approve ; \
+	for folder in $(SUBDIRS) ; do \
+			cd $$folder && terraform destroy --auto-approve ; \
 	done
 
 tfclean:
-	for number in $(SUBDIRS) ; do \
-			rm -rf $$number/.terraform* ; \
+	for folder in $(SUBDIRS) ; do \
+			rm -rf $$folder/.terraform* ; \
 	done
 
 examplescreate: tfinit tfaplly
