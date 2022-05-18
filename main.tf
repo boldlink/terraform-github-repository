@@ -33,8 +33,8 @@ resource "github_repository" "main" {
   dynamic "template" {
     for_each = local.template
     content {
-      owner      = var.template_owner
-      repository = var.template_repository
+      owner      = template.value.owner
+      repository = template.value.repository
     }
   }
   vulnerability_alerts = var.vulnerability_alerts
@@ -70,15 +70,61 @@ resource "github_branch_default" "default" {
 resource "github_team_repository" "main" {
   for_each   = var.teams
   repository = github_repository.main.name
-  team_id    = each.value
   permission = each.key
+  team_id    = each.value
 }
 
 resource "github_branch_protection_v3" "main" {
-  count          = var.default_branch == "" ? 0 : 1
-  repository     = github_repository.main.name
-  branch         = var.default_branch
-  enforce_admins = var.enforce_admins
+  count                           = var.branch_protection_version.use_branch_protection_v3 ? 1 : 0
+  repository                      = github_repository.main.name
+  branch                          = var.default_branch
+  enforce_admins                  = var.enforce_admins
+  require_signed_commits          = var.require_signed_commits
+  require_conversation_resolution = var.require_conversation_resolution
+
+  dynamic "required_status_checks" {
+    for_each = local.required_status_checks
+    content {
+      strict   = each.key
+      contexts = [each.value]
+    }
+  }
+
+  dynamic "required_pull_request_reviews" {
+    for_each = local.required_pull_request_reviews_v3
+    content {
+      dismiss_stale_reviews           = required_pull_request_reviews.value.dismiss_stale_reviews
+      dismissal_users                 = required_pull_request_reviews.value.dismissal_users
+      dismissal_teams                 = required_pull_request_reviews.value.dismissal_teams
+      require_code_owner_reviews      = required_pull_request_reviews.value.require_code_owner_reviews
+      required_approving_review_count = required_pull_request_reviews.value.required_approving_review_count
+    }
+  }
+
+  dynamic "restrictions" {
+    for_each = local.restrictions
+    content {
+      users = restrictions.value.users
+      teams = restrictions.value.teams
+      apps  = restrictions.value.apps
+    }
+  }
+  depends_on = [
+    github_branch_default.default,
+    github_branch.default
+  ]
+}
+
+resource "github_branch_protection" "main" {
+  count                           = var.branch_protection_version.use_branch_protection ? 1 : 0
+  repository_id                   = github_repository.main.name
+  pattern                         = var.pattern
+  enforce_admins                  = var.enforce_admins
+  require_signed_commits          = var.require_signed_commits
+  required_linear_history         = var.required_linear_history
+  require_conversation_resolution = var.require_conversation_resolution
+  allows_deletions                = var.allows_deletions
+  allows_force_pushes             = var.allows_force_pushes
 
   dynamic "required_status_checks" {
     for_each = local.required_status_checks
@@ -92,23 +138,13 @@ resource "github_branch_protection_v3" "main" {
     for_each = local.required_pull_request_reviews
     content {
       dismiss_stale_reviews           = required_pull_request_reviews.value.dismiss_stale_reviews
-      dismissal_users                 = required_pull_request_reviews.value.dismissal_users
-      dismissal_teams                 = [for k, v in var.teams : k]
+      restrict_dismissals             = required_pull_request_reviews.value.restrict_dismissals
+      dismissal_restrictions          = required_pull_request_reviews.value.dismissal_restrictions
+      pull_request_bypassers          = required_pull_request_reviews.value.pull_request_bypassers
       require_code_owner_reviews      = required_pull_request_reviews.value.require_code_owner_reviews
       required_approving_review_count = required_pull_request_reviews.value.required_approving_review_count
     }
   }
 
-  dynamic "restrictions" {
-    for_each = local.restrictions
-    content {
-      users = restrictions.value.users
-      teams = [for k, v in var.teams : k]
-      apps  = restrictions.value.apps
-    }
-  }
-  depends_on = [
-    github_branch_default.default,
-    github_branch.default
-  ]
+  push_restrictions = var.push_restrictions
 }

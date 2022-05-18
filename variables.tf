@@ -166,7 +166,7 @@ variable "required_status_checks" {
   default     = null
 }
 
-variable "required_pull_request_reviews" {
+variable "required_pull_request_reviews_v3" {
   type = object({
     dismiss_stale_reviews           = bool
     dismissal_users                 = list(string)
@@ -192,4 +192,76 @@ variable "enforce_admins" {
   type        = bool
   description = "(Optional) Boolean, setting this to `true` enforces status checks for repository"
   default     = true
+}
+
+# Branch protection
+variable "pattern" {
+  description = " (Required) Identifies the protection rule pattern."
+  type        = string
+  default     = "main"
+}
+
+variable "require_signed_commits" {
+  description = "(Optional) Boolean, setting this to true requires all commits to be signed with GPG."
+  type        = bool
+  default     = false
+}
+
+variable "required_linear_history" {
+  description = "(Optional) Boolean, setting this to true enforces a linear commit Git history, which prevents anyone from pushing merge commits to a branch"
+  type        = bool
+  default     = true
+}
+
+variable "require_conversation_resolution" {
+  description = "(Optional) Boolean, setting this to true requires all conversations on code must be resolved before a pull request can be merged."
+  type        = bool
+  default     = true
+}
+
+variable "push_restrictions" {
+  description = "(Optional) The list of actor IDs that may push to the branch."
+  type        = list(string)
+  default     = []
+}
+
+variable "allows_deletions" {
+  description = "(Optional) Boolean, setting this to true to allow the branch to be deleted."
+  type        = bool
+  default     = true
+}
+
+variable "allows_force_pushes" {
+  description = "(Optional) Boolean, setting this to true to allow force pushes on the branch."
+  type        = bool
+  default     = false
+}
+
+variable "required_pull_request_reviews" {
+  description = "(Optional) Enforce restrictions for pull request reviews."
+  type = object({
+    dismiss_stale_reviews           = bool
+    restrict_dismissals             = bool
+    dismissal_restrictions          = list(string)
+    pull_request_bypassers          = list(string)
+    require_code_owner_reviews      = bool
+    required_approving_review_count = number
+  })
+  default = null
+}
+
+variable "branch_protection_version" {
+  description = "Provide the branch protection options.Either `branch_protection_v3` or `branch_protection` Only one option can be `true`."
+  type = object({
+    use_branch_protection    = bool
+    use_branch_protection_v3 = bool
+  })
+  default = {
+    use_branch_protection    = false
+    use_branch_protection_v3 = true
+  }
+  validation {
+    condition     = (var.branch_protection_version.use_branch_protection == true && var.branch_protection_version.use_branch_protection_v3 == false) || (var.branch_protection_version.use_branch_protection == false && var.branch_protection_version.use_branch_protection_v3 == true) || (var.branch_protection_version.use_branch_protection == false && var.branch_protection_version.use_branch_protection_v3 == false)
+    error_message = "Only set one of the following to true; either `branch_protection` or `branch_protection_v3`."
+  }
 }
