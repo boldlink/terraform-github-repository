@@ -19,7 +19,7 @@ Examples available [`here`](https://github.com/boldlink/terraform-github-reposit
 
 ```console
 module "minimum" {
-  source      = "./../../"
+  source      = "boldlink/repository/github"
   name        = "example-minimum"
   description = "Terraform sample github repository "
 }
