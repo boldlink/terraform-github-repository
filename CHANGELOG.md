@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 - Feature: Add Branch protection options to additional branches.
 - Fix: Remove the main branch if default branch changes.
+- fix: CKV_GIT_6: "Ensure all commits GPG signed"
+- fix: CKV_GIT_5: "Ensure at least two approving reviews for PRs"
 
 ## [1.2.0] - 2022-08-30
 ### Changes

@@ -32,8 +32,6 @@ locals {
 # ###############################################################################
 
 module "branch_protection" {
-  #checkov:skip=CKV_GIT_6:"Ensure all commits GPG signed"
-  #checkov:skip=CKV_GIT_5:"Ensure at least two approving reviews for PRs"
   source                 = "./../../"
   name                   = "example-branch-protection"
   description            = "A Terraform repository example"
