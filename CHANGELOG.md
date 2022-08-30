@@ -40,3 +40,8 @@ Here following resources were added in this release.
 - Branch protection resource (V3)
 - Github repository resource
 - Initial commit
+
+[Unreleased]: https://github.com/boldlink/terraform-github-repository/1.2.0...HEAD
+[1.1.2]: https://github.com/boldlink/terraform-github-repository/releases/tag/1.2.0
+[1.1.0]: https://github.com/boldlink/terraform-github-repository/releases/tag/1.1.0
+[1.0.0]: https://github.com/boldlink/terraform-github-repository/releases/tag/1.0.0
