@@ -148,3 +148,11 @@ resource "github_branch_protection" "main" {
 
   push_restrictions = var.push_restrictions
 }
+
+resource "github_issue_label" "main" {
+  for_each    = var.issue_label
+  repository  = var.name
+  name        = each.key
+  color       = each.value.color
+  description = each.value.description
+}

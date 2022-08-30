@@ -265,3 +265,10 @@ variable "branch_protection_version" {
     error_message = "Only set one of the following to true; either `branch_protection` or `branch_protection_v3`."
   }
 }
+
+# Issue labels
+variable "issue_label" {
+  description = "A map of labels to add to the repository"
+  type        = map(any)
+  default     = {}
+}
