@@ -43,9 +43,7 @@ No inputs.
 
 ## Outputs
 
-| Name | Description |
-|------|-------------|
-| <a name="output_outputs"></a> [outputs](#output\_outputs) | Sample output for an example using branch protection |
+No outputs.
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## Third party software
