@@ -64,4 +64,10 @@ module "complete" {
     ]
     apps = []
   }
+  issue_label = {
+    patch = {
+      color       = "ff0000"
+      description = "Sample label for complete example repo"
+    }
+  }
 }

@@ -19,7 +19,7 @@ Examples available [`here`](https://github.com/boldlink/terraform-github-reposit
 
 ```console
 module "minimum" {
-  source      = "./../../"
+  source      = "boldlink/repository/github"
   name        = "example-minimum"
   description = "Terraform sample github repository "
 }
@@ -43,7 +43,7 @@ module "minimum" {
 
 | Name | Version |
 |------|---------|
-| <a name="provider_github"></a> [github](#provider\_github) | 4.24.1 |
+| <a name="provider_github"></a> [github](#provider\_github) | 4.30.0 |
 
 ## Modules
 
@@ -58,6 +58,7 @@ No modules.
 | [github_branch_default.default](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch_default) | resource |
 | [github_branch_protection.main](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch_protection) | resource |
 | [github_branch_protection_v3.main](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch_protection_v3) | resource |
+| [github_issue_label.main](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/issue_label) | resource |
 | [github_repository.main](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository) | resource |
 | [github_team_repository.main](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/team_repository) | resource |
 
@@ -87,6 +88,7 @@ No modules.
 | <a name="input_has_wiki"></a> [has\_wiki](#input\_has\_wiki) | (Optional) Set to true to enable the GitHub Wiki features on the repository. (Default: false) | `bool` | `false` | no |
 | <a name="input_homepage_url"></a> [homepage\_url](#input\_homepage\_url) | (Optional) The website of the repository. | `string` | `null` | no |
 | <a name="input_is_template"></a> [is\_template](#input\_is\_template) | (Optional) Whether or not to tell GitHub that this is a template repository. ( Default: false) | `bool` | `false` | no |
+| <a name="input_issue_label"></a> [issue\_label](#input\_issue\_label) | A map of labels to add to the repository | `map(any)` | `{}` | no |
 | <a name="input_license_template"></a> [license\_template](#input\_license\_template) | (Optional) Use the name of the template without the extension. For example, 'mit' or 'mpl-2.0'. Available licenses: https://github.com/github/choosealicense.com/tree/gh-pages/_licenses | `string` | `null` | no |
 | <a name="input_name"></a> [name](#input\_name) | (Required) The name of the repository. | `string` | n/a | yes |
 | <a name="input_pages"></a> [pages](#input\_pages) | The repository's GitHub Pages configuration, see examples for working example and required properties | `any` | `null` | no |

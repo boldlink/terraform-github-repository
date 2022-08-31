@@ -1,35 +1,54 @@
 CURRENT_DIR = $(shell pwd)
-BASE_DIR := $(CURRENT_DIR)/examples/*
-SUBDIRS := $(shell find $(BASE_DIR) -maxdepth 1 -type d)
+EXAMPLES_PATH = $(CURRENT_DIR)/examples/*
+MODULES_PATH = $(CURRENT_DIR)/modules/*
+SUBDIRS := $(shell find $(EXAMPLES_PATH) -maxdepth 0 -type d)
+MODULEDIRS := $(shell find $(MODULES_PATH)/ -maxdepth 0 -type d)
 
 .PHONY: all
 
 
 tfinit:
 	for folder in $(SUBDIRS) ; do \
-			cd $$folder && terraform init ; \
+		echo "[info]: Initialising $$folder stack" ;\
+		cd $$folder ;\
+		terraform init ;\
 	done
 
 tfplan:
 	for folder in $(SUBDIRS) ; do \
-			cd $$folder && terraform plan ; \
+		echo "[info]: Plan for $$folder stack" ;\
+		cd $$folder ;\
+		terraform plan ;\
 	done
 
-tfaplly:
+tfapply:
 	for folder in $(SUBDIRS) ; do \
-			cd $$folder && terraform plan && terraform apply --auto-approve ; \
+		echo "[info]: Creating $$folder stack" ;\
+		cd $$folder ;\
+		terraform plan --out=plan.tmp ;\
+		terraform apply plan.tmp ;\
+		rm plan.tmp ;\
 	done
 
 tfdestroy:
 	for folder in $(SUBDIRS) ; do \
-			cd $$folder && terraform destroy --auto-approve ; \
+		echo "[info]: Destroying $$folder stack" ;\
+		cd $$folder ;\
+		terraform destroy --auto-approve ;\
 	done
 
 tfclean:
 	for folder in $(SUBDIRS) ; do \
-			rm -rf $$folder/.terraform* ; \
+		echo "[info]: Cleaning $$folder tests" ;\
+		rm -rf $$folder/.terraform* ;\
 	done
 
-examplescreate: tfinit tfaplly
+tfmoduleclean:
+	for folder in $(MODULEDIRS) ; do \
+		echo "[info]: Cleaning $$folder terraform files" ;\
+		rm -rf $$folder/.terraform* .terraform* ;\
+	done
 
-examplesclean: tfdestroy tfclean
+tests: tfinit tfapply
+
+clean: tfdestroy tfclean tfmoduleclean

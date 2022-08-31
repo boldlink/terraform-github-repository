@@ -1,0 +1,9 @@
+directory:
+- .
+download-external-modules: false
+evaluate-variables: true
+external-modules-download-path: .external_modules
+framework: all
+skip-check:
+- CKV_GIT_6 #"Ensure all commits GPG signed"
+- CKV_GIT_5 #"Ensure at least two approving reviews for PRs"
