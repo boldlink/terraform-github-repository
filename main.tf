@@ -41,11 +41,13 @@ resource "github_repository" "main" {
 }
 
 resource "github_branch" "branch" {
-  count      = length(var.branch) == 0 ? 0 : length(var.branch)
-  repository = github_repository.main.name
-  branch     = element(var.branch, count.index)
+  count         = length(var.branch) == 0 ? 0 : length(var.branch)
+  repository    = github_repository.main.name
+  branch        = element(var.branch, count.index)
+  source_branch = var.default_branch
   depends_on = [
-    github_repository.main
+    github_repository.main,
+    github_branch.default
   ]
 }
 
@@ -147,6 +149,11 @@ resource "github_branch_protection" "main" {
   }
 
   push_restrictions = var.push_restrictions
+  lifecycle {
+    ignore_changes = [
+      required_pull_request_reviews["pull_request_bypassers"]
+    ]
+  }
 }
 
 resource "github_issue_label" "main" {
@@ -155,4 +162,12 @@ resource "github_issue_label" "main" {
   name        = each.key
   color       = each.value.color
   description = each.value.description
+}
+
+resource "github_actions_secret" "main" {
+  for_each        = var.secrets
+  repository      = github_repository.main.name
+  secret_name     = each.key
+  encrypted_value = try(each.value.encrypted_value, null)
+  plaintext_value = try(each.value.plaintext_value, null)
 }

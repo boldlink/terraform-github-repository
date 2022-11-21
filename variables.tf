@@ -120,7 +120,7 @@ variable "archive_on_destroy" {
 variable "vulnerability_alerts" {
   type        = bool
   description = "(Optional) Set to `false` to disable security alerts for vulnerable dependencies. Enabling requires alerts to be enabled on the owner level."
-  default     = null
+  default     = true
 }
 
 #branch
@@ -269,6 +269,13 @@ variable "branch_protection_version" {
 # Issue labels
 variable "issue_label" {
   description = "A map of labels to add to the repository"
+  type        = map(any)
+  default     = {}
+}
+
+# github actions secrets
+variable "secrets" {
+  description = "A map of secrets to be created with your repository"
   type        = map(any)
   default     = {}
 }

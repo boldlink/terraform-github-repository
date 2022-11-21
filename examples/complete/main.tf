@@ -20,11 +20,6 @@ resource "github_team" "maintain" {
   privacy     = "closed"
 }
 
-locals {
-  admin    = github_team.admin.id
-  maintain = github_team.maintain.id
-}
-
 # ###############################################################################
 # The examples below create an organization repository and team repository
 # To deploy this example export both the GITHUB_TOKEN and GITHUB_OWNER variables
@@ -41,6 +36,8 @@ module "complete" {
   gitignore_template     = "Terraform"
   require_signed_commits = true
   homepage_url           = "https://boldlink.io"
+  visibility             = "public"
+  pattern                = "develop"
   template = {
     owner      = "boldlink"
     repository = "terraform-module-template"
@@ -49,12 +46,18 @@ module "complete" {
     admin    = local.admin
     maintain = local.maintain
   }
-  required_pull_request_reviews_v3 = {
+
+  branch_protection_version = {
+    use_branch_protection    = true
+    use_branch_protection_v3 = false
+  }
+  required_pull_request_reviews = {
     dismiss_stale_reviews           = true
     require_code_owner_reviews      = true
     required_approving_review_count = 2
-    dismissal_teams                 = []
-    dismissal_users                 = []
+    restrict_dismissals             = true
+    dismissal_restrictions          = []
+    pull_request_bypassers          = [github_team.admin.node_id]
   }
   restrictions = {
     users = []
@@ -69,5 +72,9 @@ module "complete" {
       color       = "ff0000"
       description = "Sample label for complete example repo"
     }
+  }
+
+  secrets = {
+    EXAMPLE_TOKEN = { plaintext_value = "examplesecretvalue" }
   }
 }
