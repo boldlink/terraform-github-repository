@@ -11,10 +11,17 @@
 ## Description
 
 This module is a Boldlink opinionated structure adapted to our internal requirements for creating organization repositories.
-
 This template creates your custom Github repository, team repositories allowing to configure access, branches and branches protection
+### Why choose this module over the standard resources
+- Option to create additional branches when creating the repository.
+- Option to set a different branch as your default.
+- You get to configure branch protection for your default branch using either `github_branch_protection` or `github_branch_protection_v3`.
+- Option to create new issue labels for your repository.
+- Using this module, you are able to create and manage github action secrets for your repository.
+- Default configurations have been validated by Checkov to ensure best practices and security.
 
-**NOTE** Both [github_branch_protection_v3.main](https://registry.terraform.io/providers/hashicorp/github/latest/docs/resources/branch_protection_v3) and  [github_branch_protection.main](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch_protection) require an upgrade to github pro or the repository to be made public.
+
+**NOTE** Both [github_branch_protection_v3.main](https://registry.terraform.io/providers/hashicorp/github/latest/docs/resources/branch_protection_v3) and  [github_branch_protection.main](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch_protection) require an upgrade to github team/enterprise, or the repository to be made public.
 
 Examples available [`here`](https://github.com/boldlink/terraform-github-repository/tree/main/examples)
 
