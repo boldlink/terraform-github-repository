@@ -149,11 +149,6 @@ resource "github_branch_protection" "main" {
   }
 
   push_restrictions = var.push_restrictions
-  lifecycle {
-    ignore_changes = [
-      required_pull_request_reviews["pull_request_bypassers"]
-    ]
-  }
 }
 
 resource "github_issue_label" "main" {

@@ -54,7 +54,7 @@ module "minimum" {
 
 | Name | Version |
 |------|---------|
-| <a name="provider_github"></a> [github](#provider\_github) | 5.9.0 |
+| <a name="provider_github"></a> [github](#provider\_github) | 4.30.0 |
 
 ## Modules
 
