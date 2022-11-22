@@ -7,3 +7,4 @@ framework: all
 skip-check:
 - CKV_GIT_6 #"Ensure all commits GPG signed"
 - CKV_GIT_5 #"Ensure at least two approving reviews for PRs"
+- CKV_GIT_4 # "Ensure GitHub Actions secrets are encrypted"

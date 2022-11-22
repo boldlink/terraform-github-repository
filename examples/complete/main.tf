@@ -36,7 +36,6 @@ module "complete" {
   gitignore_template     = "Terraform"
   require_signed_commits = true
   homepage_url           = "https://boldlink.io"
-  visibility             = "public"
   pattern                = "develop"
   template = {
     owner      = "boldlink"
