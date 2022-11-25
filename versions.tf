@@ -5,7 +5,7 @@ terraform {
       version = ">= 4.24.1"
     }
     sodium = {
-      source = "killmeplz/sodium"
+      source  = "killmeplz/sodium"
       version = "0.0.3"
     }
   }
