@@ -25,6 +25,9 @@ This template creates your custom Github repository, team repositories allowing 
 
 Examples available [`here`](https://github.com/boldlink/terraform-github-repository/tree/main/examples)
 
+## Github Provider
+*NOTE*: Github provider is currently locked to version `5.8.0` in the examples as it is the highest stable version that didn't break when we did tests.
+
 ## Usage
 *NOTE*: These examples use the latest version of this module
 

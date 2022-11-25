@@ -13,7 +13,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.3.0] - 2022-11-21
 ### Changes
 - feat: added github actions secret resource to create and manage repository secrets
-- fix: pull_request_bypassers triggered an updated in place during a second terraform apply
 - fix: source branch for additional branches being created
 
 ## [1.2.0] - 2022-08-30

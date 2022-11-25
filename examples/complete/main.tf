@@ -7,7 +7,7 @@ resource "random_pet" "maintain" {
   length = 2
 }
 
-# Sample organization teams
+# Example organization teams
 resource "github_team" "admin" {
   name        = random_pet.admin.id
   description = "Sample admin team"
@@ -37,6 +37,7 @@ module "complete" {
   require_signed_commits = true
   homepage_url           = "https://boldlink.io"
   pattern                = "develop"
+  visibility             = "public"
   template = {
     owner      = "boldlink"
     repository = "terraform-module-template"
@@ -74,6 +75,6 @@ module "complete" {
   }
 
   secrets = {
-    EXAMPLE_TOKEN = { plaintext_value = "examplesecretvalue" }
+    AUTOMATION_TOKEN = "<verysecrettoken>"
   }
 }
