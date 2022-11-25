@@ -37,7 +37,6 @@ module "complete" {
   require_signed_commits = true
   homepage_url           = "https://boldlink.io"
   pattern                = "develop"
-  visibility             = "public"
   template = {
     owner      = "boldlink"
     repository = "terraform-module-template"
