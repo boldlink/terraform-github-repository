@@ -68,8 +68,8 @@ module "complete" {
   }
 
   required_status_checks = {
-      strict = true
-      contexts = ["checkov-scan / checkov-scan"]
+    strict   = true
+    contexts = ["checkov-scan / checkov-scan"]
   }
   issue_label = {
     patch = {

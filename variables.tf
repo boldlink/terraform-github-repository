@@ -159,7 +159,7 @@ variable "teams" {
 
 variable "required_status_checks" {
   type = object({
-    strict  = bool
+    strict   = bool
     contexts = list(string)
   })
   description = "Enforce restrictions for required status checks, `strict` (Optional) Require branches to be up to date before merging. Defaults to false `contexts` (Optional) The list of status checks to require in order to merge into this branch. No status checks are required by default."
