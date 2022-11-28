@@ -66,6 +66,11 @@ module "complete" {
     ]
     apps = []
   }
+
+  required_status_checks = {
+      strict = true
+      contexts = ["checkov-scan / checkov-scan"]
+  }
   issue_label = {
     patch = {
       color       = "ff0000"

@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changes
 - feat: added github actions secret resource to create and manage repository secrets
 - fix: source branch for additional branches being created
+- fix: required status checks arguments
 
 ## [1.2.0] - 2022-08-30
 ### Changes

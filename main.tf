@@ -131,8 +131,8 @@ resource "github_branch_protection" "main" {
   dynamic "required_status_checks" {
     for_each = local.required_status_checks
     content {
-      strict   = each.key
-      contexts = [each.value]
+      strict   = required_status_checks.value.strict
+      contexts = required_status_checks.value.contexts
     }
   }
 
