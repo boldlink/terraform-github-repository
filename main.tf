@@ -163,7 +163,7 @@ resource "github_actions_secret" "main" {
   for_each        = var.secrets
   repository      = github_repository.main.name
   secret_name     = each.key
-  encrypted_value = data.sodium_encrypted_item.example[each.key].encrypted_value_base64
+  encrypted_value = data.sodium_encrypted_item.main[each.key].encrypted_value_base64
   depends_on = [
     github_repository.main
   ]
