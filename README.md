@@ -62,7 +62,7 @@ module "minimum" {
 
 | Name | Version |
 |------|---------|
-| <a name="provider_github"></a> [github](#provider\_github) | 5.9.1 |
+| <a name="provider_github"></a> [github](#provider\_github) | 5.11.0 |
 | <a name="provider_sodium"></a> [sodium](#provider\_sodium) | 0.0.3 |
 
 ## Modules
@@ -82,8 +82,8 @@ No modules.
 | [github_issue_label.main](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/issue_label) | resource |
 | [github_repository.main](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository) | resource |
 | [github_team_repository.main](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/team_repository) | resource |
-| [github_actions_public_key.public_key](https://registry.terraform.io/providers/integrations/github/latest/docs/data-sources/actions_public_key) | data source |
-| [sodium_encrypted_item.example](https://registry.terraform.io/providers/killmeplz/sodium/0.0.3/docs/data-sources/encrypted_item) | data source |
+| [github_actions_public_key.main](https://registry.terraform.io/providers/integrations/github/latest/docs/data-sources/actions_public_key) | data source |
+| [sodium_encrypted_item.main](https://registry.terraform.io/providers/killmeplz/sodium/0.0.3/docs/data-sources/encrypted_item) | data source |
 
 ## Inputs
 
