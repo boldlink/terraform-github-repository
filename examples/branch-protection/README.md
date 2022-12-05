@@ -1,4 +1,8 @@
-[![Build Status](https://github.com/boldlink/terraform-github-repository/actions/workflows/pre-commit.yml/badge.svg)](https://github.com/boldlink/terraform-github-repository/actions)
+[![Build Status](https://github.com/boldlink/terraform-github-repository/actions/workflows/release.yaml/badge.svg)](https://github.com/boldlink/terraform-github-repository/actions)
+[![Build Status](https://github.com/boldlink/terraform-github-repository/actions/workflows/pre-commit.yaml/badge.svg)](https://github.com/boldlink/terraform-github-repository/actions)
+[![Build Status](https://github.com/boldlink/terraform-github-repository/actions/workflows/pr-labeler.yaml/badge.svg)](https://github.com/boldlink/terraform-github-repository/actions)
+[![Build Status](https://github.com/boldlink/terraform-github-repository/actions/workflows/checkov.yaml/badge.svg)](https://github.com/boldlink/terraform-github-repository/actions)
+[![Build Status](https://github.com/boldlink/terraform-github-repository/actions/workflows/auto-badge.yaml/badge.svg)](https://github.com/boldlink/terraform-github-repository/actions)
 
 [<img src="https://avatars.githubusercontent.com/u/25388280?s=200&v=4" width="96"/>](https://boldlink.io)
 
@@ -12,15 +16,15 @@
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.14.11 |
-| <a name="requirement_github"></a> [github](#requirement\_github) | >= 4.24.1 |
+| <a name="requirement_github"></a> [github](#requirement\_github) | = 5.8.0 |
 | <a name="requirement_random"></a> [random](#requirement\_random) | >= 3.1.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_github"></a> [github](#provider\_github) | 4.30.0 |
-| <a name="provider_random"></a> [random](#provider\_random) | 3.3.2 |
+| <a name="provider_github"></a> [github](#provider\_github) | 5.8.0 |
+| <a name="provider_random"></a> [random](#provider\_random) | 3.4.3 |
 
 ## Modules
 
@@ -32,8 +36,8 @@
 
 | Name | Type |
 |------|------|
-| [github_team.admin](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/team) | resource |
-| [github_team.maintain](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/team) | resource |
+| [github_team.admin](https://registry.terraform.io/providers/integrations/github/5.8.0/docs/resources/team) | resource |
+| [github_team.maintain](https://registry.terraform.io/providers/integrations/github/5.8.0/docs/resources/team) | resource |
 | [random_pet.admin](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/pet) | resource |
 | [random_pet.maintain](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/pet) | resource |
 

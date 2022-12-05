@@ -120,7 +120,7 @@ variable "archive_on_destroy" {
 variable "vulnerability_alerts" {
   type        = bool
   description = "(Optional) Set to `false` to disable security alerts for vulnerable dependencies. Enabling requires alerts to be enabled on the owner level."
-  default     = null
+  default     = true
 }
 
 #branch
@@ -159,8 +159,8 @@ variable "teams" {
 
 variable "required_status_checks" {
   type = object({
-    strict  = bool
-    context = list(string)
+    strict   = bool
+    contexts = list(string)
   })
   description = "Enforce restrictions for required status checks, `strict` (Optional) Require branches to be up to date before merging. Defaults to false `contexts` (Optional) The list of status checks to require in order to merge into this branch. No status checks are required by default."
   default     = null
@@ -269,6 +269,13 @@ variable "branch_protection_version" {
 # Issue labels
 variable "issue_label" {
   description = "A map of labels to add to the repository"
+  type        = map(any)
+  default     = {}
+}
+
+# github actions secrets
+variable "secrets" {
+  description = "A map of secrets to be created with your repository"
   type        = map(any)
   default     = {}
 }

@@ -1,4 +1,8 @@
-[![Build Status](https://github.com/boldlink/terraform-github-repository/actions/workflows/pre-commit.yml/badge.svg)](https://github.com/boldlink/terraform-github-repository/actions)
+[![Build Status](https://github.com/boldlink/terraform-github-repository/actions/workflows/release.yaml/badge.svg)](https://github.com/boldlink/terraform-github-repository/actions)
+[![Build Status](https://github.com/boldlink/terraform-github-repository/actions/workflows/pre-commit.yaml/badge.svg)](https://github.com/boldlink/terraform-github-repository/actions)
+[![Build Status](https://github.com/boldlink/terraform-github-repository/actions/workflows/pr-labeler.yaml/badge.svg)](https://github.com/boldlink/terraform-github-repository/actions)
+[![Build Status](https://github.com/boldlink/terraform-github-repository/actions/workflows/checkov.yaml/badge.svg)](https://github.com/boldlink/terraform-github-repository/actions)
+[![Build Status](https://github.com/boldlink/terraform-github-repository/actions/workflows/auto-badge.yaml/badge.svg)](https://github.com/boldlink/terraform-github-repository/actions)
 
 [<img src="https://avatars.githubusercontent.com/u/25388280?s=200&v=4" width="96"/>](https://boldlink.io)
 
@@ -7,12 +11,26 @@
 ## Description
 
 This module is a Boldlink opinionated structure adapted to our internal requirements for creating organization repositories.
-
 This template creates your custom Github repository, team repositories allowing to configure access, branches and branches protection
 
-**NOTE** Both [github_branch_protection_v3.main](https://registry.terraform.io/providers/hashicorp/github/latest/docs/resources/branch_protection_v3) and  [github_branch_protection.main](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch_protection) require an upgrade to github pro or the repository to be made public.
+### Why choose this module over the standard resources
+- Option to create additional branches when creating the repository.
+- Option to set a different branch as your default.
+- You get to configure branch protection for your default branch using either `github_branch_protection` or `github_branch_protection_v3`.
+- Option to create new issue labels for your repository.
+- Using this module, you are able to create and manage github action secrets for your repository.
+- All github actions secrets are encrypted in conformance with security best practices
+- Default configurations have been validated by Checkov to ensure best practices and security.
+
+### Github Actions Secrets Encryption
+We use `sodium_encrypted_item` to encrypt all the secrets being created. This requires the repository's `github_actions_public_key` and the secret string encoded with base64.
+
+**NOTE** Both [github_branch_protection_v3.main](https://registry.terraform.io/providers/hashicorp/github/latest/docs/resources/branch_protection_v3) and  [github_branch_protection.main](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch_protection) require an upgrade to github team/enterprise, or the repository to be made public.
 
 Examples available [`here`](https://github.com/boldlink/terraform-github-repository/tree/main/examples)
+
+## Github Provider
+*NOTE*: Github provider is currently locked to version `5.8.0` in the examples as it is the highest stable version that didn't break when we did tests.
 
 ## Usage
 *NOTE*: These examples use the latest version of this module
@@ -38,12 +56,14 @@ module "minimum" {
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.14.11 |
 | <a name="requirement_github"></a> [github](#requirement\_github) | >= 4.24.1 |
+| <a name="requirement_sodium"></a> [sodium](#requirement\_sodium) | 0.0.3 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_github"></a> [github](#provider\_github) | 4.30.0 |
+| <a name="provider_github"></a> [github](#provider\_github) | 5.11.0 |
+| <a name="provider_sodium"></a> [sodium](#provider\_sodium) | 0.0.3 |
 
 ## Modules
 
@@ -53,6 +73,7 @@ No modules.
 
 | Name | Type |
 |------|------|
+| [github_actions_secret.main](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/actions_secret) | resource |
 | [github_branch.branch](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch) | resource |
 | [github_branch.default](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch) | resource |
 | [github_branch_default.default](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch_default) | resource |
@@ -61,6 +82,8 @@ No modules.
 | [github_issue_label.main](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/issue_label) | resource |
 | [github_repository.main](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository) | resource |
 | [github_team_repository.main](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/team_repository) | resource |
+| [github_actions_public_key.main](https://registry.terraform.io/providers/integrations/github/latest/docs/data-sources/actions_public_key) | data source |
+| [sodium_encrypted_item.main](https://registry.terraform.io/providers/killmeplz/sodium/0.0.3/docs/data-sources/encrypted_item) | data source |
 
 ## Inputs
 
@@ -99,13 +122,14 @@ No modules.
 | <a name="input_required_linear_history"></a> [required\_linear\_history](#input\_required\_linear\_history) | (Optional) Boolean, setting this to true enforces a linear commit Git history, which prevents anyone from pushing merge commits to a branch | `bool` | `true` | no |
 | <a name="input_required_pull_request_reviews"></a> [required\_pull\_request\_reviews](#input\_required\_pull\_request\_reviews) | (Optional) Enforce restrictions for pull request reviews. | <pre>object({<br>    dismiss_stale_reviews           = bool<br>    restrict_dismissals             = bool<br>    dismissal_restrictions          = list(string)<br>    pull_request_bypassers          = list(string)<br>    require_code_owner_reviews      = bool<br>    required_approving_review_count = number<br>  })</pre> | `null` | no |
 | <a name="input_required_pull_request_reviews_v3"></a> [required\_pull\_request\_reviews\_v3](#input\_required\_pull\_request\_reviews\_v3) | supports the following arguments: `dismiss_stale_reviews` (Optional) Dismiss approved reviews automatically when a new commit is pushed. Defaults to `false` / `dismissal_users` (Optional) The list of user logins with dismissal access / `dismissal_teams` (Optional) The list of team slugs with dismissal access. Always use slug of the team, not its name. Each team already has to have access to the repository. /  / `require_code_owner_reviews` (Optional) Require an approved review in pull requests including files with a designated code owner. Defaults to `false` / `required_approving_review_count` (Optional) Require x number of approvals to satisfy branch protection requirements. If this is specified it must be a number between `1-6` | <pre>object({<br>    dismiss_stale_reviews           = bool<br>    dismissal_users                 = list(string)<br>    dismissal_teams                 = list(string)<br>    require_code_owner_reviews      = bool<br>    required_approving_review_count = number<br>  })</pre> | `null` | no |
-| <a name="input_required_status_checks"></a> [required\_status\_checks](#input\_required\_status\_checks) | Enforce restrictions for required status checks, `strict` (Optional) Require branches to be up to date before merging. Defaults to false `contexts` (Optional) The list of status checks to require in order to merge into this branch. No status checks are required by default. | <pre>object({<br>    strict  = bool<br>    context = list(string)<br>  })</pre> | `null` | no |
+| <a name="input_required_status_checks"></a> [required\_status\_checks](#input\_required\_status\_checks) | Enforce restrictions for required status checks, `strict` (Optional) Require branches to be up to date before merging. Defaults to false `contexts` (Optional) The list of status checks to require in order to merge into this branch. No status checks are required by default. | <pre>object({<br>    strict   = bool<br>    contexts = list(string)<br>  })</pre> | `null` | no |
 | <a name="input_restrictions"></a> [restrictions](#input\_restrictions) | supports the following arguments: `users` (Optional) The list of user logins with push access. / `teams` (Optional) The list of team slugs with push access. Always use slug of the team, not its name. Each team already has to have access to the repository. / `apps` (Optional) The list of app slugs with push access. | <pre>object({<br>    users = list(string)<br>    teams = list(string)<br>    apps  = list(string)<br>  })</pre> | `null` | no |
+| <a name="input_secrets"></a> [secrets](#input\_secrets) | A map of secrets to be created with your repository | `map(any)` | `{}` | no |
 | <a name="input_teams"></a> [teams](#input\_teams) | The teams and respective permissions to the repository, for example `admin = maintainer` | `map(string)` | `{}` | no |
 | <a name="input_template"></a> [template](#input\_template) | Template repository to use, specify a `owner` and a `repository` id | <pre>object({<br>    owner      = string<br>    repository = string<br>  })</pre> | `null` | no |
 | <a name="input_topics"></a> [topics](#input\_topics) | (Optional) The list of topics of the repository.  (Default: []) | `list(string)` | `[]` | no |
 | <a name="input_visibility"></a> [visibility](#input\_visibility) | (Optional) Can be 'public', 'private' or 'internal' .The visibility parameter overrides the private parameter. Defaults to 'private' if neither private nor visibility are set, default to state of private parameter if it is set. | `string` | `"private"` | no |
-| <a name="input_vulnerability_alerts"></a> [vulnerability\_alerts](#input\_vulnerability\_alerts) | (Optional) Set to `false` to disable security alerts for vulnerable dependencies. Enabling requires alerts to be enabled on the owner level. | `bool` | `null` | no |
+| <a name="input_vulnerability_alerts"></a> [vulnerability\_alerts](#input\_vulnerability\_alerts) | (Optional) Set to `false` to disable security alerts for vulnerable dependencies. Enabling requires alerts to be enabled on the owner level. | `bool` | `true` | no |
 
 ## Outputs
 

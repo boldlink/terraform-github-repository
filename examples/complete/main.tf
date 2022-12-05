@@ -7,7 +7,7 @@ resource "random_pet" "maintain" {
   length = 2
 }
 
-# Sample organization teams
+# Example organization teams
 resource "github_team" "admin" {
   name        = random_pet.admin.id
   description = "Sample admin team"
@@ -18,11 +18,6 @@ resource "github_team" "maintain" {
   name        = random_pet.maintain.id
   description = "Sample maintain team"
   privacy     = "closed"
-}
-
-locals {
-  admin    = github_team.admin.id
-  maintain = github_team.maintain.id
 }
 
 # ###############################################################################
@@ -41,6 +36,7 @@ module "complete" {
   gitignore_template     = "Terraform"
   require_signed_commits = true
   homepage_url           = "https://boldlink.io"
+  pattern                = "develop"
   template = {
     owner      = "boldlink"
     repository = "terraform-module-template"
@@ -49,12 +45,18 @@ module "complete" {
     admin    = local.admin
     maintain = local.maintain
   }
-  required_pull_request_reviews_v3 = {
+
+  branch_protection_version = {
+    use_branch_protection    = true
+    use_branch_protection_v3 = false
+  }
+  required_pull_request_reviews = {
     dismiss_stale_reviews           = true
     require_code_owner_reviews      = true
     required_approving_review_count = 2
-    dismissal_teams                 = []
-    dismissal_users                 = []
+    restrict_dismissals             = true
+    dismissal_restrictions          = []
+    pull_request_bypassers          = [github_team.admin.node_id]
   }
   restrictions = {
     users = []
@@ -64,10 +66,19 @@ module "complete" {
     ]
     apps = []
   }
+
+  required_status_checks = {
+    strict   = true
+    contexts = ["checkov-scan / checkov-scan"]
+  }
   issue_label = {
     patch = {
       color       = "ff0000"
       description = "Sample label for complete example repo"
     }
+  }
+
+  secrets = {
+    AUTOMATION_TOKEN = "<verysecrettoken>"
   }
 }
