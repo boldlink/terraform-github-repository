@@ -1,3 +1,6 @@
+[![License](https://img.shields.io/badge/License-Apache-blue.svg)](https://github.com/boldlink/terraform-github-repository/blob/main/LICENSE)
+[![Latest Release](https://img.shields.io/github/release/boldlink/terraform-github-repository.svg)](https://github.com/boldlink/terraform-github-repository/releases/latest)
+[![Build Status](https://github.com/boldlink/terraform-github-repository/actions/workflows/update.yaml/badge.svg)](https://github.com/boldlink/terraform-github-repository/actions)
 [![Build Status](https://github.com/boldlink/terraform-github-repository/actions/workflows/release.yaml/badge.svg)](https://github.com/boldlink/terraform-github-repository/actions)
 [![Build Status](https://github.com/boldlink/terraform-github-repository/actions/workflows/pre-commit.yaml/badge.svg)](https://github.com/boldlink/terraform-github-repository/actions)
 [![Build Status](https://github.com/boldlink/terraform-github-repository/actions/workflows/pr-labeler.yaml/badge.svg)](https://github.com/boldlink/terraform-github-repository/actions)
@@ -62,7 +65,7 @@ module "minimum" {
 
 | Name | Version |
 |------|---------|
-| <a name="provider_github"></a> [github](#provider\_github) | 5.11.0 |
+| <a name="provider_github"></a> [github](#provider\_github) | 5.18.3 |
 | <a name="provider_sodium"></a> [sodium](#provider\_sodium) | 0.0.3 |
 
 ## Modules
