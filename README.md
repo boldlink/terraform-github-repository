@@ -66,7 +66,7 @@ module "minimum" {
 
 | Name | Version |
 |------|---------|
-| <a name="provider_github"></a> [github](#provider\_github) | 5.22.0 |
+| <a name="provider_github"></a> [github](#provider\_github) | 5.23.0 |
 | <a name="provider_sodium"></a> [sodium](#provider\_sodium) | 0.0.3 |
 
 ## Modules
