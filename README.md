@@ -6,6 +6,7 @@
 [![Build Status](https://github.com/boldlink/terraform-github-repository/actions/workflows/pr-labeler.yaml/badge.svg)](https://github.com/boldlink/terraform-github-repository/actions)
 [![Build Status](https://github.com/boldlink/terraform-github-repository/actions/workflows/module-examples-tests.yaml/badge.svg)](https://github.com/boldlink/terraform-github-repository/actions)
 [![Build Status](https://github.com/boldlink/terraform-github-repository/actions/workflows/checkov.yaml/badge.svg)](https://github.com/boldlink/terraform-github-repository/actions)
+[![Build Status](https://github.com/boldlink/terraform-github-repository/actions/workflows/auto-merge.yaml/badge.svg)](https://github.com/boldlink/terraform-github-repository/actions)
 [![Build Status](https://github.com/boldlink/terraform-github-repository/actions/workflows/auto-badge.yaml/badge.svg)](https://github.com/boldlink/terraform-github-repository/actions)
 
 [<img src="https://avatars.githubusercontent.com/u/25388280?s=200&v=4" width="96"/>](https://boldlink.io)
@@ -66,7 +67,7 @@ module "minimum" {
 
 | Name | Version |
 |------|---------|
-| <a name="provider_github"></a> [github](#provider\_github) | 5.31.0 |
+| <a name="provider_github"></a> [github](#provider\_github) | 5.33.0 |
 | <a name="provider_sodium"></a> [sodium](#provider\_sodium) | 0.0.3 |
 
 ## Modules
