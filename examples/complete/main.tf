@@ -1,10 +1,10 @@
 
 resource "random_pet" "admin" {
-  length = 2
+  length = 5
 }
 
 resource "random_pet" "maintain" {
-  length = 2
+  length = 5
 }
 
 # Example organization teams
@@ -37,6 +37,19 @@ module "complete" {
   require_signed_commits = true
   homepage_url           = "https://boldlink.io"
   pattern                = "develop"
+  visibility             = "private"
+  has_issues             = true
+  has_projects           = true
+  has_wiki               = true
+  is_template            = false
+  allow_merge_commit     = false
+  delete_branch_on_merge = true
+  has_downloads          = false
+  auto_init              = true
+  archive_on_destroy     = false
+  vulnerability_alerts   = true
+  archived               = false
+  topics                 = []
   template = {
     owner      = "boldlink"
     repository = "terraform-module-template"
@@ -47,16 +60,19 @@ module "complete" {
   }
 
   branch_protection_version = {
-    use_branch_protection    = true
-    use_branch_protection_v3 = false
+    use_branch_protection    = false
+    use_branch_protection_v3 = true
   }
-  required_pull_request_reviews = {
+  enforce_admins                  = true
+  require_conversation_resolution = true
+
+  required_pull_request_reviews_v3 = {
     dismiss_stale_reviews           = true
     require_code_owner_reviews      = true
     required_approving_review_count = 2
     restrict_dismissals             = true
-    dismissal_restrictions          = []
-    pull_request_bypassers          = [github_team.admin.node_id]
+    dismissal_teams                 = [github_team.admin.node_id]
+    dismissal_users                 = ["ndegwajohn"]
   }
   restrictions = {
     users = []
@@ -68,8 +84,8 @@ module "complete" {
   }
 
   required_status_checks = {
-    strict   = true
-    contexts = ["checkov-scan / checkov-scan"]
+    strict = true
+    checks = ["ci/check:824642007264"]
   }
   issue_label = {
     patch = {
