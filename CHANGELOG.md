@@ -10,11 +10,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - fix: CKV_GIT_6: "Ensure all commits GPG signed"
 - fix: CKV_GIT_5: "Ensure at least two approving reviews for PRs"
 - feat: bypass pull request allowances in branch protection v3
+- show repository pages example
+
 
 ## [1.3.1] - 2023-11-24
 - fix: removed deprecated contexts attribute
 - showcased the following attributes in complete example visibility, has_issues,has_projects,has_wiki, is_template, allow_merge_commit, delete_branch_on_merge, has_downloads, auto_init, archive_on_destroy, vulnerability_alerts, archived
 - added branch protection V3 in complete example
+- added a depends on to github labels resource
 
 ## [1.3.0] - 2022-11-21
 ### Changes
