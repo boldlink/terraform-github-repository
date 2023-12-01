@@ -85,10 +85,10 @@ resource "github_branch_protection_v3" "main" {
   require_conversation_resolution = var.require_conversation_resolution
 
   dynamic "required_status_checks" {
-    for_each = local.required_status_checks
+    for_each = local.required_status_checks_v3
     content {
-      strict   = each.key
-      contexts = [each.value]
+      strict = lookup(var.required_status_checks_v3, "strict", null)
+      checks = lookup(var.required_status_checks_v3, "checks", null)
     }
   }
 
@@ -111,6 +111,7 @@ resource "github_branch_protection_v3" "main" {
       apps  = restrictions.value.apps
     }
   }
+
   depends_on = [
     github_branch_default.default,
     github_branch.default
@@ -131,8 +132,8 @@ resource "github_branch_protection" "main" {
   dynamic "required_status_checks" {
     for_each = local.required_status_checks
     content {
-      strict   = required_status_checks.value.strict
-      contexts = required_status_checks.value.contexts
+      strict   = lookup(var.required_status_checks, "strict", null)
+      contexts = lookup(var.required_status_checks, "contexts", null)
     }
   }
 
@@ -157,6 +158,7 @@ resource "github_issue_label" "main" {
   name        = each.key
   color       = each.value.color
   description = each.value.description
+  depends_on  = [github_repository.main]
 }
 
 resource "github_actions_secret" "main" {

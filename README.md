@@ -34,17 +34,15 @@ We use `sodium_encrypted_item` to encrypt all the secrets being created. This re
 
 Examples available [`here`](https://github.com/boldlink/terraform-github-repository/tree/main/examples)
 
-## Github Provider
-*NOTE*: Github provider is currently locked to version `5.8.0` in the examples as it is the highest stable version that didn't break when we did tests.
-
 ## Usage
 *NOTE*: These examples use the latest version of this module
 
 ```console
 module "minimum" {
   source      = "boldlink/repository/github"
+  version     = "<specify_latest_version_here>"
   name        = "example-minimum"
-  description = "Terraform sample github repository "
+  description = "Example repository created using terraform."
 }
 
 ```
@@ -60,14 +58,14 @@ module "minimum" {
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.14.11 |
-| <a name="requirement_github"></a> [github](#requirement\_github) | >= 4.24.1 |
+| <a name="requirement_github"></a> [github](#requirement\_github) | >= 5.42.0 |
 | <a name="requirement_sodium"></a> [sodium](#requirement\_sodium) | 0.0.3 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_github"></a> [github](#provider\_github) | 5.33.0 |
+| <a name="provider_github"></a> [github](#provider\_github) | 5.42.0 |
 | <a name="provider_sodium"></a> [sodium](#provider\_sodium) | 0.0.3 |
 
 ## Modules
@@ -127,7 +125,8 @@ No modules.
 | <a name="input_required_linear_history"></a> [required\_linear\_history](#input\_required\_linear\_history) | (Optional) Boolean, setting this to true enforces a linear commit Git history, which prevents anyone from pushing merge commits to a branch | `bool` | `true` | no |
 | <a name="input_required_pull_request_reviews"></a> [required\_pull\_request\_reviews](#input\_required\_pull\_request\_reviews) | (Optional) Enforce restrictions for pull request reviews. | <pre>object({<br>    dismiss_stale_reviews           = bool<br>    restrict_dismissals             = bool<br>    dismissal_restrictions          = list(string)<br>    pull_request_bypassers          = list(string)<br>    require_code_owner_reviews      = bool<br>    required_approving_review_count = number<br>  })</pre> | `null` | no |
 | <a name="input_required_pull_request_reviews_v3"></a> [required\_pull\_request\_reviews\_v3](#input\_required\_pull\_request\_reviews\_v3) | supports the following arguments: `dismiss_stale_reviews` (Optional) Dismiss approved reviews automatically when a new commit is pushed. Defaults to `false` / `dismissal_users` (Optional) The list of user logins with dismissal access / `dismissal_teams` (Optional) The list of team slugs with dismissal access. Always use slug of the team, not its name. Each team already has to have access to the repository. /  / `require_code_owner_reviews` (Optional) Require an approved review in pull requests including files with a designated code owner. Defaults to `false` / `required_approving_review_count` (Optional) Require x number of approvals to satisfy branch protection requirements. If this is specified it must be a number between `1-6` | <pre>object({<br>    dismiss_stale_reviews           = bool<br>    dismissal_users                 = list(string)<br>    dismissal_teams                 = list(string)<br>    require_code_owner_reviews      = bool<br>    required_approving_review_count = number<br>  })</pre> | `null` | no |
-| <a name="input_required_status_checks"></a> [required\_status\_checks](#input\_required\_status\_checks) | Enforce restrictions for required status checks, `strict` (Optional) Require branches to be up to date before merging. Defaults to false `contexts` (Optional) The list of status checks to require in order to merge into this branch. No status checks are required by default. | <pre>object({<br>    strict   = bool<br>    contexts = list(string)<br>  })</pre> | `null` | no |
+| <a name="input_required_status_checks"></a> [required\_status\_checks](#input\_required\_status\_checks) | Enforce restrictions for required status checks, `strict` (Optional) Require branches to be up to date before merging. Defaults to false `contexts` (Optional) The list of status checks to require in order to merge into this branch. No status checks are required by default. | `any` | `null` | no |
+| <a name="input_required_status_checks_v3"></a> [required\_status\_checks\_v3](#input\_required\_status\_checks\_v3) | Enforce restrictions for required status checks, `strict` (Optional) Require branches to be up to date before merging. Defaults to false `checks` (Optional) The list of status checks to require in order to merge into this branch. No status checks are required by default. | `any` | `null` | no |
 | <a name="input_restrictions"></a> [restrictions](#input\_restrictions) | supports the following arguments: `users` (Optional) The list of user logins with push access. / `teams` (Optional) The list of team slugs with push access. Always use slug of the team, not its name. Each team already has to have access to the repository. / `apps` (Optional) The list of app slugs with push access. | <pre>object({<br>    users = list(string)<br>    teams = list(string)<br>    apps  = list(string)<br>  })</pre> | `null` | no |
 | <a name="input_secrets"></a> [secrets](#input\_secrets) | A map of secrets to be created with your repository | `map(any)` | `{}` | no |
 | <a name="input_teams"></a> [teams](#input\_teams) | The teams and respective permissions to the repository, for example `admin = maintainer` | `map(string)` | `{}` | no |
@@ -161,4 +160,4 @@ This repository uses third party software:
   * Install with `brew install tflint`
   * Manually use via pre-commit
 
-#### BOLDLink-SIG 2022
+#### BOLDLink-SIG 2023
