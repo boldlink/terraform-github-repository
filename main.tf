@@ -85,10 +85,10 @@ resource "github_branch_protection_v3" "main" {
   require_conversation_resolution = var.require_conversation_resolution
 
   dynamic "required_status_checks" {
-    for_each = local.required_status_checks
+    for_each = local.required_status_checks_v3
     content {
-      strict = required_status_checks.value.strict
-      #checks  = required_status_checks.value.checks
+      strict = lookup(var.required_status_checks_v3, "strict", null)
+      checks  = lookup(var.required_status_checks_v3, "checks", null)
     }
   }
 
@@ -132,8 +132,8 @@ resource "github_branch_protection" "main" {
   dynamic "required_status_checks" {
     for_each = local.required_status_checks
     content {
-      strict = required_status_checks.value.strict
-      #checks = required_status_checks.value.checks
+      strict = lookup(var.required_status_checks, "strict", null)
+      contexts  = lookup(var.required_status_checks, "contexts", null)
     }
   }
 

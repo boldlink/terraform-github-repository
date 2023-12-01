@@ -2,7 +2,7 @@ terraform {
   required_providers {
     github = {
       source  = "integrations/github"
-      version = ">= 4.24.1"
+      version = ">= 5.42.0"
     }
     sodium = {
       source  = "killmeplz/sodium"

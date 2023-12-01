@@ -163,6 +163,12 @@ variable "required_status_checks" {
   default     = null
 }
 
+variable "required_status_checks_v3" {
+  type        = any
+  description = "Enforce restrictions for required status checks, `strict` (Optional) Require branches to be up to date before merging. Defaults to false `checks` (Optional) The list of status checks to require in order to merge into this branch. No status checks are required by default."
+  default     = null
+}
+
 variable "required_pull_request_reviews_v3" {
   type = object({
     dismiss_stale_reviews           = bool

@@ -45,6 +45,10 @@ module "branch_protection" {
     use_branch_protection    = true
     use_branch_protection_v3 = false
   }
+  required_status_checks = {
+    strict = true
+    contexts = ["checkov-scan / checkov-scan"]
+  }
   template = {
     owner      = "boldlink"
     repository = "terraform-module-template"

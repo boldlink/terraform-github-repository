@@ -1,10 +1,10 @@
 
 resource "random_pet" "admin" {
-  length = 5
+  length = 2
 }
 
 resource "random_pet" "maintain" {
-  length = 5
+  length = 2
 }
 
 # Example organization teams
@@ -27,8 +27,8 @@ resource "github_team" "maintain" {
 
 module "complete" {
   source                 = "./../../"
-  name                   = "example-complete"
-  description            = "A Terraform repository example."
+  name                   = "example-complete-repository"
+  description            = "A github repository example created using terraform."
   license_template       = "apache-2.0"
   allow_squash_merge     = true
   branch                 = ["dev", "pre", "prd"]
@@ -83,9 +83,11 @@ module "complete" {
     apps = []
   }
 
-  required_status_checks = {
+  required_status_checks_v3 = {
     strict = true
-    checks = ["ci/check:824642007264"]
+    checks = [
+      "ci/check"
+    ]
   }
   issue_label = {
     patch = {
