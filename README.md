@@ -40,8 +40,9 @@ Examples available [`here`](https://github.com/boldlink/terraform-github-reposit
 ```console
 module "minimum" {
   source      = "boldlink/repository/github"
+  version     = "<specify_latest_version_here>"
   name        = "example-minimum"
-  description = "Terraform sample github repository "
+  description = "Example repository created using terraform."
 }
 
 ```
