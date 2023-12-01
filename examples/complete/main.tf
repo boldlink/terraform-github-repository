@@ -92,7 +92,7 @@ module "complete" {
   issue_label = {
     patch = {
       color       = "ff0000"
-      description = "Sample label for complete example repo"
+      description = "Example label for complete repository"
     }
   }
 
