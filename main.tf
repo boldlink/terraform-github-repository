@@ -88,7 +88,7 @@ resource "github_branch_protection_v3" "main" {
     for_each = local.required_status_checks_v3
     content {
       strict = lookup(var.required_status_checks_v3, "strict", null)
-      checks  = lookup(var.required_status_checks_v3, "checks", null)
+      checks = lookup(var.required_status_checks_v3, "checks", null)
     }
   }
 
@@ -132,8 +132,8 @@ resource "github_branch_protection" "main" {
   dynamic "required_status_checks" {
     for_each = local.required_status_checks
     content {
-      strict = lookup(var.required_status_checks, "strict", null)
-      contexts  = lookup(var.required_status_checks, "contexts", null)
+      strict   = lookup(var.required_status_checks, "strict", null)
+      contexts = lookup(var.required_status_checks, "contexts", null)
     }
   }
 
