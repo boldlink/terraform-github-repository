@@ -34,7 +34,7 @@ locals {
 module "branch_protection" {
   source                 = "./../../"
   name                   = "example-branch-protection"
-  description            = "A Terraform repository example"
+  description            = "A github repository example created using terraform"
   license_template       = "apache-2.0"
   allow_squash_merge     = true
   branch                 = ["dev", "pre", "prd"]
