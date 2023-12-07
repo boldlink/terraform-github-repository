@@ -23,10 +23,10 @@ resource "github_repository" "main" {
 
     content {
       source {
-        branch = var.pages.branch
+        branch = try(var.pages.branch, null)
         path   = try(var.pages.path, "/")
       }
-      cname = try(var.pages.cname, null)
+      build_type = try(var.pages.build_type, null)
     }
   }
   topics = var.topics
@@ -100,6 +100,14 @@ resource "github_branch_protection_v3" "main" {
       dismissal_teams                 = required_pull_request_reviews.value.dismissal_teams
       require_code_owner_reviews      = required_pull_request_reviews.value.require_code_owner_reviews
       required_approving_review_count = required_pull_request_reviews.value.required_approving_review_count
+      dynamic "bypass_pull_request_allowances" {
+        for_each = [required_pull_request_reviews.value.bypass_pull_request_allowances]
+        content {
+          users = bypass_pull_request_allowances.value.users
+          teams = bypass_pull_request_allowances.value.teams
+          apps  = bypass_pull_request_allowances.value.apps
+        }
+      }
     }
   }
 
