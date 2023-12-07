@@ -31,7 +31,7 @@ module "complete" {
   description            = "A github repository example created using terraform."
   license_template       = "apache-2.0"
   allow_squash_merge     = true
-  branch                 = ["dev", "pre", "prd"]
+  branch                 = ["dev", "prod"]
   default_branch         = "develop"
   gitignore_template     = "Terraform"
   require_signed_commits = true
@@ -54,6 +54,11 @@ module "complete" {
     owner      = "boldlink"
     repository = "terraform-module-template"
   }
+  pages = {
+    branch     = "main" # branch must exist before GitHub Pages can be built
+    path       = "/"
+    build_type = "legacy"
+  }
   teams = {
     admin    = local.admin
     maintain = local.maintain
@@ -63,7 +68,7 @@ module "complete" {
     use_branch_protection    = false
     use_branch_protection_v3 = true
   }
-  enforce_admins                  = true
+  enforce_admins                  = false #this option is set to false to show bypass_pull_request_allowances being effected
   require_conversation_resolution = true
 
   required_pull_request_reviews_v3 = {
@@ -73,6 +78,11 @@ module "complete" {
     restrict_dismissals             = true
     dismissal_teams                 = [github_team.admin.node_id]
     dismissal_users                 = ["ndegwajohn"]
+    bypass_pull_request_allowances = {
+      users = ["ndegwajohn"]
+      teams = []
+      apps  = []
+    }
   }
   restrictions = {
     users = []
@@ -82,6 +92,8 @@ module "complete" {
     ]
     apps = []
   }
+
+
 
   required_status_checks_v3 = {
     strict = true
