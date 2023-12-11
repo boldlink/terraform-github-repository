@@ -20,12 +20,6 @@ resource "github_team" "maintain" {
   privacy     = "closed"
 }
 
-locals {
-  admin     = github_team.admin.id
-  maintain  = github_team.maintain.id
-  bypassers = github_team.admin.node_id
-}
-
 # ###############################################################################
 # The examples below create an organization repository and team repository
 # To deploy this example export both the GITHUB_TOKEN and GITHUB_OWNER variables
@@ -45,6 +39,7 @@ module "branch_protection" {
     use_branch_protection    = true
     use_branch_protection_v3 = false
   }
+  enforce_admins = false #this option is set to false to show pull_request_bypassers being effected
   required_status_checks = {
     strict   = true
     contexts = ["checkov-scan / checkov-scan"]
