@@ -9,9 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fix: Remove the main branch if default branch changes.
 - fix: CKV_GIT_6: "Ensure all commits GPG signed"
 - fix: CKV_GIT_5: "Ensure at least two approving reviews for PRs"
-- feat: bypass pull request allowances in branch protection v3
-- show repository pages example
-- fix: pull_request_bypassers in branch protection example
+
+## [1.4.1] - 2024-01-30
+- Added a section in the main README about skipped checkov alert.
+- Updated README footers
 
 ## [1.4.0] - 2023-12-07
 - feat: bypass pull request allowances in branch protection v3
@@ -62,8 +63,9 @@ Here following resources were added in this release.
 - Github repository resource
 - Initial commit
 
-[Unreleased]: https://github.com/boldlink/terraform-github-repository/1.4.0...HEAD
+[Unreleased]: https://github.com/boldlink/terraform-github-repository/1.4.1...HEAD
 
+[1.4.1]: https://github.com/boldlink/terraform-github-repository/releases/tag/1.4.1
 [1.4.0]: https://github.com/boldlink/terraform-github-repository/releases/tag/1.4.0
 [1.3.1]: https://github.com/boldlink/terraform-github-repository/releases/tag/1.3.1
 [1.3.0]: https://github.com/boldlink/terraform-github-repository/releases/tag/1.3.0
