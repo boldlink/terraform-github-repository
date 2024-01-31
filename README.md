@@ -52,6 +52,10 @@ module "minimum" {
 
 [Terraform module documentation](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository)
 
+
+## Checkov Alert
+The `CKV_GIT_5 Ensure at least two approving reviews for PRs` alert has been skipped in this module. This is because the alert is flagged even after required approving review count has been set to 2 or more.
+
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
@@ -65,7 +69,7 @@ module "minimum" {
 
 | Name | Version |
 |------|---------|
-| <a name="provider_github"></a> [github](#provider\_github) | 5.42.0 |
+| <a name="provider_github"></a> [github](#provider\_github) | 5.45.0 |
 | <a name="provider_sodium"></a> [sodium](#provider\_sodium) | 0.0.3 |
 
 ## Modules
@@ -160,4 +164,4 @@ This repository uses third party software:
   * Install with `brew install tflint`
   * Manually use via pre-commit
 
-#### BOLDLink-SIG 2023
+#### BOLDLink-SIG 2024
